@@ -135,7 +135,7 @@ const benefits = [
 
 function Brand({ light = false }) {
   return (
-    <a href="#home" className="group inline-flex items-center gap-3" aria-label="MMG's International home">
+    <a href="#home" className="group inline-flex items-center gap-3" aria-label="MMG International home">
       <img
         src="/mmg-international-logo.png"
         alt=""
@@ -144,7 +144,7 @@ function Brand({ light = false }) {
         className="size-12 object-contain transition-transform duration-500 group-hover:rotate-3 group-hover:scale-105 sm:size-14"
       />
       <span className="flex flex-col leading-none">
-        <strong className={`font-display text-xl tracking-wide ${light ? 'text-white' : 'text-forest'}`}>MMG’S</strong>
+        <strong className={`font-display text-xl tracking-wide ${light ? 'text-white' : 'text-forest'}`}>MMG</strong>
         <span className={`mt-1.5 text-[8px] font-bold tracking-[0.32em] ${light ? 'text-gold-soft' : 'text-bronze'}`}>
           INTERNATIONAL
         </span>
@@ -302,7 +302,7 @@ function App() {
           </nav>
           <div className="flex items-center gap-3">
             <a
-              href={whatsapp("Assalam-o-Alaikum MMG's International. Please share your latest wholesale collections and prices.")}
+              href={whatsapp("Assalam-o-Alaikum MMG International. Please share your latest wholesale collections and prices.")}
               target="_blank"
               rel="noreferrer"
               className="hidden min-h-11 items-center gap-2 bg-gold px-5 text-[9px] font-bold uppercase tracking-[0.17em] text-forest transition-all hover:-translate-y-0.5 hover:bg-gold-soft sm:flex"
@@ -361,7 +361,7 @@ function App() {
         <section id="home" className="hero-showroom relative isolate -mt-[82px] min-h-[calc(100svh-36px)] overflow-hidden bg-forest pt-[82px] text-white">
           <img
             src="/mmg-showroom-hero.png"
-            alt="MMG's International showroom filled with premium bedding collections"
+            alt="MMG International showroom filled with premium bedding collections"
             width="1918"
             height="820"
             fetchPriority="high"
@@ -564,7 +564,7 @@ function App() {
               <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us the collection, quantity and delivery city. Our team will respond with current availability and wholesale prices.</p>
             </Reveal>
             <Reveal delay={0.1} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
-              <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me MMG's complete Bedding and Ladies Suiting catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
+              <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding and Ladies Suiting catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
               <a href="tel:+923009658666" className="inline-flex min-h-13 items-center justify-center gap-3 border border-white/30 px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-white transition-colors hover:border-gold hover:bg-gold hover:text-forest"><Phone size={15} />+92 300 9658666</a>
             </Reveal>
           </div>
@@ -598,7 +598,7 @@ function App() {
             </div>
           </div>
           <div className="flex flex-col gap-3 pt-7 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/30 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} MMG’s International. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} MMG International. All rights reserved.</p>
             <p>Wholesale textiles · Faisalabad</p>
           </div>
         </div>
@@ -630,7 +630,7 @@ function App() {
                     <FaWhatsapp size={26} />
                   </div>
                   <div>
-                    <p className="text-sm font-bold">MMG’s International</p>
+                    <p className="text-sm font-bold">MMG International</p>
                     <p className="mt-1 flex items-center gap-1.5 text-[10px] text-white/70"><span className="size-1.5 rounded-full bg-[#5df076]" />Typically replies quickly</p>
                   </div>
                 </div>
@@ -660,7 +660,7 @@ function App() {
                   </a>
                 </div>
                 <a
-                  href={whatsapp("Assalam-o-Alaikum MMG's International. Please send me your complete wholesale catalogue and latest prices.")}
+                  href={whatsapp("Assalam-o-Alaikum MMG International. Please send me your complete wholesale catalogue and latest prices.")}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25d366] px-5 text-[10px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_25px_rgba(37,211,102,.24)] transition-transform hover:-translate-y-0.5"

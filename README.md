@@ -1,4 +1,4 @@
-# MMG's International
+# MMG International
 
 An immersive wholesale textile landing page rebuilt with React, Vite, Tailwind CSS, Motion and Three.js.
 
@@ -15,4 +15,4 @@ npm run dev
 npm run build
 ```
 
-All catalogue and enquiry actions open a pre-filled WhatsApp conversation with MMG's International.
+All catalogue and enquiry actions open a pre-filled WhatsApp conversation with MMG International.
