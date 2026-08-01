@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --color-forest: #071d19;
+  --color-jade: #0f453b;
+  --color-gold: #c9a75d;
+  --color-gold-soft: #ead49c;
+  --color-bronze: #987329;
+  --color-ivory: #f6f2e9;
+  --color-ink: #17201d;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #17201d;
+  background: #f6f2e9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; min-width: 320px; background: #f6f2e9; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+::selection { color: #071d19; background: #ead49c; }
+
+.font-display { font-family: var(--font-display); }
+
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  margin-top: 6px;
+  background: #987329;
+  transition: width .35s cubic-bezier(.2,.75,.25,1);
+}
+
+.nav-link:hover::after { width: 100%; }
+
+.hero-editorial {
+  background:
+    radial-gradient(circle at 78% 17%, rgba(201,167,93,.17), transparent 25%),
+    radial-gradient(circle at 12% 86%, rgba(15,69,59,.08), transparent 27%),
+    linear-gradient(118deg, #fbf8f1 0%, #f6f2e9 56%, #ede3d2 100%);
+}
+
+.hero-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .26;
+  background-image:
+    linear-gradient(rgba(7,29,25,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7,29,25,.055) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: linear-gradient(90deg, black, transparent 48%, black);
+}
+
+.hero-orbit {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(152,115,41,.2);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.hero-orbit-one {
+  right: -15vw;
+  top: -30vw;
+  width: 70vw;
+  height: 70vw;
+}
+
+.hero-orbit-two {
+  right: -5vw;
+  top: -17vw;
+  width: 46vw;
+  height: 46vw;
+}
+
+.hero-collage { isolation: isolate; }
+
+.hero-image {
+  position: absolute;
+  overflow: hidden;
+  border: 8px solid #f6f2e9;
+  background: #071d19;
+  box-shadow: 0 28px 75px rgba(7,29,25,.2);
+}
+
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+  pointer-events: none;
+}
+
+.hero-image span {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 9px 12px;
+  color: #fff;
+  background: rgba(3,23,19,.82);
+  backdrop-filter: blur(10px);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.hero-image-fashion {
+  z-index: 2;
+  top: 0;
+  right: 2%;
+  width: 58%;
+  height: 88%;
+}
+
+.hero-image-bedding {
+  z-index: 4;
+  left: 0;
+  bottom: 0;
+  width: 66%;
+  height: 46%;
+}
+
+.hero-image-detail {
+  z-index: 1;
+  left: 8%;
+  top: 5%;
+  width: 31%;
+  height: 35%;
+  filter: saturate(.65);
+}
+
+.marquee-track { animation: marquee 28s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.texture-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.collection-card::after,
+.collection-gateway::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255,255,255,0);
+  pointer-events: none;
+  transition: border-color .5s ease, inset .5s ease;
+}
+
+.collection-card:hover::after,
+.collection-gateway:hover::after {
+  inset: 16px;
+  border-color: rgba(255,255,255,.3);
+}
+
+@media (max-width: 1023px) {
+  .hero-image-fashion { right: 4%; width: 59%; }
+  .hero-image-bedding { width: 68%; }
+}
+
+@media (max-width: 640px) {
+  .hero-editorial::before { background-size: 42px 42px; }
+  .hero-collage { height: 560px; }
+  .hero-image { border-width: 5px; }
+  .hero-image-fashion { right: 0; width: 63%; height: 82%; }
+  .hero-image-bedding { width: 72%; height: 43%; }
+  .hero-image-detail { left: 0; width: 34%; height: 31%; }
+  .hero-image span { left: 10px; bottom: 10px; padding: 7px 9px; letter-spacing: .14em; }
+  .marquee-track { animation-duration: 22s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
