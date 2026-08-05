@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
 import { FaWhatsapp } from 'react-icons/fa'
 import {
   ArrowDown,
+  ArrowLeft,
   ArrowRight,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Gem,
   Layers3,
   Mail,
@@ -15,10 +18,73 @@ import {
   Sparkles,
   Truck,
   X,
+  ZoomIn,
 } from 'lucide-react'
 
 const phone = '923009658666'
 const whatsapp = (message) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+
+// ─── Google Drive images per product ─────────────────────────────────────────
+const driveImg = (id) => `https://drive.google.com/uc?export=view&id=${id}`
+
+const GALLERY = {
+  'Royal Fit': [
+    driveImg('1PzG5hFIOf2o6IhusmDRm6VyuvgwcYeD5'),
+    driveImg('1hOHVRa5VNoNOrv6osfEcwGbvLdu_NAfj'),
+    driveImg('1GI5wn5IR7M8eZ1IpbSXiC77EBqIBuc9x'),
+    driveImg('11qebxSj-hP7byzqynS3p-Y4bg6t5S-s0'),
+    driveImg('1WUO3cenO1g3S1mWDItWHaKE1bBGH2Dnr'),
+  ],
+  'Elga Premium': [
+    driveImg('1aaws8FxQ0DlD8g-wBlH0dEXIL8lA2IJf'),
+    driveImg('1ojBweibWoRx6qpNKFoMMYiNZEevRPuN5'),
+    driveImg('152fARXl4YJjXzdQDtmyyPLDOyTZHSlW0'),
+  ],
+  'Elga Signature': [
+    driveImg('1QcwhkKpjVdi6ox6Ydv6YA4BpHEasgWut'),
+    driveImg('15SPLGFD91WcwfNoOlW4Hi5esuQARkvqZ'),
+    driveImg('18A02QbU0jZJIlYyds2c-4QzLXFtDo65S'),
+  ],
+  'CheckMate': [
+    driveImg('1sQHVdINnUbxdjq9Cw3tBglFbz5Lm3ESq'),
+    driveImg('1aLWfouKhWSNncS7FBU5W0vKVpRNquvPM'),
+    driveImg('1qsqgAHy-otavOLm8PKaOUiYhRpiN7GpW'),
+  ],
+  'Demase': [
+    driveImg('1Xxf8JRbVUaAyGWGErF0SSTmdn2Sw6G5V'),
+    driveImg('1jKqcb3xAu3BEpSxuukUeNoCtV2KreVxi'),
+    driveImg('1HvywtCu7dzQozmUXACIkYm0tCQgkJz3C'),
+  ],
+  'Chamki Lawn': [
+    driveImg('185AKMZqeRxzKg3oyWPMivpSVT8nJ8MRa'),
+    driveImg('1wrVc6AKl43haBPzcy8JV3aBQco3dgpex'),
+    driveImg('1pUZDyY9OUGk_4EaH5njIJFc76-YkF8zH'),
+  ],
+  '3D Digital Poly Lilan Lawn': [
+    driveImg('1Z-D2Yrlk_KmnmYZ7KVmyMRpvSk4yQ3aX'),
+    driveImg('13K6it0L0_kSSfRtTEXofec_yJeYrv2Xn'),
+    driveImg('1xcxPNWF6rrnor3FvfbWHv21dVqJjKV0x'),
+    driveImg('1kp7UsCAfd81eY4KBk3ZIrQPHrDcEdkUq'),
+    driveImg('1gG0OFpwse58vWqgKecPhn7uC5NA6jmSb'),
+    driveImg('1VRm3roIv04ikW3BIRpFlkxntal5HOHQ4'),
+    driveImg('1BVYrPoJS0ARmn-F5bqOW08sDQkcIubJu'),
+    driveImg('1kEC_d7cFqHRv9oyUA6R3J4tuY9O4uSNq'),
+  ],
+  'Elga Cotton BanaDora Lawn': [
+    driveImg('1F0m1tvolXZFD2ZLT_bmynbKkniv2IaLF'),
+    driveImg('1bbmnk3tq9fbWrgcN7azPTewqLUhZDiq1'),
+  ],
+  'Classic Digital Lilan Lawn': [
+    driveImg('1PMENQDC3_MnrkvXYFZfijedmZcDZpggj'),
+    driveImg('1wXtsNeLtvjirPWGg-x6AWDmVipAP6pNT'),
+  ],
+  'Elga Summer Collection': [],
+  'Snow Flake': [
+    driveImg('1KL_s0WCWKGufD5mHYZwfZmPMp6p8bi4-'),
+    driveImg('1KzLJY99XeOCaQFcRvRhlhycAvt3OV4i7'),
+    driveImg('1aOn3cvCJKWqFvulmPRSed3M_WGkksgAd'),
+  ],
+}
 
 const navItems = [
   ['Bedding', '#bedding'],
@@ -35,6 +101,8 @@ const bedding = [
     image: '/collections/royal-fit.jpg',
     position: 'center 42%',
     layout: 'lg:col-span-7',
+    price: 'PKR 1,350',
+    moq: '1 Box (20 pcs)',
   },
   {
     title: 'Elga Premium',
@@ -43,6 +111,8 @@ const bedding = [
     image: '/collections/elga-premium.jpg',
     position: 'center 43%',
     layout: 'lg:col-span-5',
+    price: 'PKR 1,200',
+    moq: '1 pc',
   },
   {
     title: 'Elga Signature',
@@ -51,6 +121,8 @@ const bedding = [
     image: '/collections/elga-signature.jpg',
     position: 'center 43%',
     layout: 'lg:col-span-5',
+    price: 'PKR 1,150',
+    moq: '1 pc',
   },
   {
     title: 'CheckMate',
@@ -59,6 +131,8 @@ const bedding = [
     image: '/collections/checkmate.png',
     position: 'center',
     layout: 'lg:col-span-3',
+    price: 'PKR 1,250',
+    moq: '1 Box (20 pcs)',
   },
   {
     title: 'Demase',
@@ -67,6 +141,8 @@ const bedding = [
     image: '/collections/demase.jpeg',
     position: 'center',
     layout: 'lg:col-span-4',
+    price: 'PKR 1,200 – 1,300',
+    moq: '1 Box (20 pcs)',
   },
 ]
 
@@ -77,6 +153,8 @@ const ladiesSuiting = [
     description: 'Graceful floral detailing with a luminous finish for standout seasonal looks.',
     image: '/collections/chamki-lawn.jpeg',
     position: 'center',
+    price: 'PKR 750/suit',
+    moq: '1 suit',
   },
   {
     title: '3D Digital Poly Lilan Lawn',
@@ -84,6 +162,8 @@ const ladiesSuiting = [
     description: 'Bold digital florals with depth, clarity and coordinated three-piece styling.',
     image: '/collections/3d-digital-poly-lilan-lawn.png',
     position: 'center top',
+    price: 'PKR 700/suit',
+    moq: '1 Volume (8 suits)',
   },
   {
     title: 'Elga Cotton BanaDora Lawn',
@@ -91,6 +171,8 @@ const ladiesSuiting = [
     description: 'Soft cotton character paired with delicate florals and beautifully balanced colour.',
     image: '/collections/elga-cotton-banadora-lawn.jpeg',
     position: 'center top',
+    price: 'PKR 1,100/suit',
+    moq: '1 suit',
   },
   {
     title: 'Classic Digital Lilan Lawn',
@@ -98,6 +180,8 @@ const ladiesSuiting = [
     description: 'Elegant digital florals created for timeless, versatile everyday dressing.',
     image: '/collections/classic-digital-lilan-lawn.jpeg',
     position: 'center top',
+    price: 'PKR 999/suit',
+    moq: '1 suit',
   },
   {
     title: 'Elga Summer Collection',
@@ -105,6 +189,8 @@ const ladiesSuiting = [
     description: 'Fresh colour stories and expressive patterns made for the energy of summer.',
     image: '/collections/elga-summer-collection.jpg',
     position: 'center top',
+    price: 'Contact for price',
+    moq: 'Contact us',
   },
   {
     title: 'Snow Flake',
@@ -112,6 +198,8 @@ const ladiesSuiting = [
     description: 'A crisp floral story with rich colour contrast and an effortlessly graceful mood.',
     image: '/collections/snow-flake.jpg',
     position: 'center top',
+    price: 'PKR 297/meter',
+    moq: '1 meter',
   },
 ]
 
@@ -133,6 +221,183 @@ const benefits = [
   },
 ]
 
+// ─── Gallery Modal ────────────────────────────────────────────────────────────
+function GalleryModal({ item, type, onClose }) {
+  const images = GALLERY[item.title] || []
+  const [idx, setIdx] = useState(0)
+  const [loaded, setLoaded] = useState({})
+  const touchStart = useRef(null)
+
+  const prev = useCallback(() => setIdx((i) => (i - 1 + images.length) % images.length), [images.length])
+  const next = useCallback(() => setIdx((i) => (i + 1) % images.length), [images.length])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose, prev, next])
+
+  // Lock body scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
+
+  // Touch swipe
+  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX }
+  const onTouchEnd = (e) => {
+    if (touchStart.current === null) return
+    const diff = touchStart.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev()
+    touchStart.current = null
+  }
+
+  const message = `Assalam-o-Alaikum. I am interested in the *${item.title}* ${type === 'bedding' ? 'Bedding' : 'Ladies Suiting'} collection.\n\n💰 Price: ${item.price}\n📦 MOQ: ${item.moq}\n\nPlease share availability and wholesale pricing.`
+  const hasImages = images.length > 0
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[200] flex flex-col bg-[#031713]"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${item.title} gallery`}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-8">
+        <div>
+          <p className="text-[9px] font-bold uppercase tracking-[0.28em] text-gold-soft">{item.overline}</p>
+          <h2 className="mt-1 font-display text-2xl font-semibold text-white sm:text-3xl">{item.title}</h2>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          className="grid size-10 place-items-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-white/40 hover:text-white"
+          aria-label="Close gallery"
+        >
+          <X size={18} />
+        </button>
+      </div>
+
+      {/* Main image area */}
+      <div className="relative flex flex-1 items-center justify-center overflow-hidden">
+        {hasImages ? (
+          <>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.3, ease: [0.2, 0.75, 0.25, 1] }}
+                className="absolute inset-0 flex items-center justify-center p-4 sm:p-8"
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+              >
+                {!loaded[idx] && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="size-10 animate-spin rounded-full border-2 border-white/10 border-t-gold" />
+                  </div>
+                )}
+                <img
+                  src={images[idx]}
+                  alt={`${item.title} — view ${idx + 1}`}
+                  onLoad={() => setLoaded((l) => ({ ...l, [idx]: true }))}
+                  className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded[idx] ? 'opacity-100' : 'opacity-0'}`}
+                  style={{ maxHeight: 'calc(100vh - 260px)' }}
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={prev}
+                  className="absolute left-3 top-1/2 z-10 -translate-y-1/2 grid size-11 place-items-center rounded-full border border-white/15 bg-black/40 text-white/70 backdrop-blur-sm transition-all hover:border-white/40 hover:text-white sm:left-5"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  className="absolute right-3 top-1/2 z-10 -translate-y-1/2 grid size-11 place-items-center rounded-full border border-white/15 bg-black/40 text-white/70 backdrop-blur-sm transition-all hover:border-white/40 hover:text-white sm:right-5"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+          </>
+        ) : (
+          <div className="flex flex-col items-center gap-4 text-white/40">
+            <ZoomIn size={40} strokeWidth={1} />
+            <p className="text-sm">Images coming soon</p>
+          </div>
+        )}
+      </div>
+
+      {/* Thumbnails strip */}
+      {hasImages && images.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto border-t border-white/10 px-5 py-3 sm:px-8">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setIdx(i)}
+              aria-label={`View image ${i + 1}`}
+              className={`relative size-14 shrink-0 overflow-hidden rounded transition-all sm:size-16 ${
+                i === idx ? 'ring-2 ring-gold ring-offset-1 ring-offset-[#031713]' : 'opacity-50 hover:opacity-80'
+              }`}
+            >
+              <img src={src} alt="" className="size-full object-cover" loading="lazy" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Bottom bar — price + WhatsApp */}
+      <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 px-5 py-5 sm:flex-row sm:items-center sm:px-8">
+        <div className="flex flex-wrap gap-6 text-sm text-white/60">
+          <span>
+            <span className="block text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">Wholesale Price</span>
+            <strong className="mt-1 block font-display text-xl text-white">{item.price}</strong>
+          </span>
+          <span>
+            <span className="block text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">Min. Order</span>
+            <strong className="mt-1 block font-display text-xl text-white">{item.moq}</strong>
+          </span>
+          {hasImages && (
+            <span>
+              <span className="block text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">Images</span>
+              <strong className="mt-1 block font-display text-xl text-white">{idx + 1} / {images.length}</strong>
+            </span>
+          )}
+        </div>
+        <a
+          href={whatsapp(message)}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-full items-center justify-center gap-3 bg-[#25d366] px-7 py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(37,211,102,.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_35px_rgba(37,211,102,.4)] sm:w-auto"
+        >
+          <FaWhatsapp size={18} />
+          Order on WhatsApp
+        </a>
+      </div>
+    </motion.div>
+  )
+}
+
+// ─── Shared Components ────────────────────────────────────────────────────────
 function Brand({ light = false }) {
   return (
     <a href="#home" className="group inline-flex items-center gap-3" aria-label="MMG International home">
@@ -195,22 +460,22 @@ function PrimaryLink({ href, children, inverse = false }) {
   )
 }
 
-function CollectionCard({ item, index, type = 'bedding' }) {
-  const message = `Assalam-o-Alaikum. I am interested in the ${item.title} ${type === 'bedding' ? 'Bedding' : 'Ladies Suiting'} collection. Please share the catalogue, wholesale pricing and availability.`
+// ─── Collection Card ──────────────────────────────────────────────────────────
+function CollectionCard({ item, index, type = 'bedding', onOpenGallery }) {
   const isBedding = type === 'bedding'
+  const hasImages = (GALLERY[item.title] || []).length > 0
 
   return (
     <Reveal className={isBedding ? item.layout : ''} delay={(index % 3) * 0.07}>
-      <motion.a
-        href={whatsapp(message)}
-        target="_blank"
-        rel="noreferrer"
+      <motion.button
+        type="button"
+        onClick={() => onOpenGallery(item, type)}
         whileHover={{ y: -8 }}
         transition={{ type: 'spring', stiffness: 190, damping: 22 }}
-        className={`collection-card group relative block overflow-hidden bg-[#0a201b] shadow-[0_28px_70px_rgba(7,29,25,.15)] ${
+        className={`collection-card group relative block w-full overflow-hidden bg-[#0a201b] shadow-[0_28px_70px_rgba(7,29,25,.15)] text-left ${
           isBedding ? 'min-h-[430px] sm:min-h-[520px]' : 'min-h-[560px] sm:min-h-[640px]'
         }`}
-        aria-label={`Request the ${item.title} catalogue on WhatsApp`}
+        aria-label={`View ${item.title} gallery`}
       >
         <img
           src={item.image}
@@ -221,12 +486,21 @@ function CollectionCard({ item, index, type = 'bedding' }) {
           className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/10 to-black/5 transition-colors duration-500 group-hover:via-[#031713]/20" />
+
+        {/* Top bar */}
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-6 sm:p-8">
           <span className="border border-white/25 bg-black/15 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.24em] text-white backdrop-blur-md">
             {type === 'bedding' ? 'Bedding' : 'Ladies Suiting'}
           </span>
-          <span className="font-display text-xl italic text-white/70">{String(index + 1).padStart(2, '0')}</span>
+          {hasImages && (
+            <span className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/30 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+              <ZoomIn size={11} />
+              {(GALLERY[item.title] || []).length} photos
+            </span>
+          )}
         </div>
+
+        {/* Bottom content */}
         <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
           <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">{item.overline}</p>
           <h3 className={`font-display font-semibold leading-[.92] text-white ${isBedding ? 'text-4xl sm:text-[48px]' : 'text-4xl sm:text-[42px]'}`}>
@@ -237,22 +511,35 @@ function CollectionCard({ item, index, type = 'bedding' }) {
               <p className="max-w-md pt-4 text-sm leading-7 text-white/65">{item.description}</p>
             </div>
           </div>
-          <span className="mt-5 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
-            Request catalogue
-            <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-          </span>
+
+          {/* Price chip */}
+          <div className="mt-4 flex items-center justify-between">
+            <div>
+              <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/40">From</span>
+              <p className="font-display text-lg font-semibold text-gold-soft">{item.price}</p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
+              View gallery
+              <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+            </span>
+          </div>
         </div>
-      </motion.a>
+      </motion.button>
     </Reveal>
   )
 }
 
+// ─── App ──────────────────────────────────────────────────────────────────────
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [whatsappOpen, setWhatsappOpen] = useState(false)
+  const [gallery, setGallery] = useState(null) // { item, type }
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 28, restDelta: 0.001 })
+
+  const openGallery = useCallback((item, type) => setGallery({ item, type }), [])
+  const closeGallery = useCallback(() => setGallery(null), [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -263,9 +550,7 @@ function App() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
   useEffect(() => {
@@ -284,12 +569,25 @@ function App() {
     <div className="overflow-clip bg-ivory text-ink">
       <motion.div className="fixed inset-x-0 top-0 z-[100] h-[3px] origin-left bg-gold" style={{ scaleX: progress }} />
 
+      {/* Gallery Modal */}
+      <AnimatePresence>
+        {gallery && (
+          <GalleryModal
+            item={gallery.item}
+            type={gallery.type}
+            onClose={closeGallery}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Announcement bar */}
       <div className="relative z-50 flex min-h-9 items-center justify-center bg-[#031713] px-5 text-center text-[9px] font-bold uppercase tracking-[0.23em] text-white/55 sm:justify-between sm:px-[5vw]">
         <span>Wholesale collections</span>
         <span className="hidden text-gold-soft/80 sm:block">Bedding &amp; Ladies Suiting</span>
         <a className="hidden transition-colors hover:text-white md:block" href="tel:+923009658666">+92 300 9658666</a>
       </div>
 
+      {/* Header */}
       <header className={`sticky top-0 z-40 border-b transition-all duration-500 ${scrolled ? 'border-white/15 bg-[#031713]/82 shadow-[0_10px_35px_rgba(0,0,0,.18)] backdrop-blur-xl' : 'border-white/15 bg-transparent'}`}>
         <div className={`mx-auto flex max-w-[1500px] items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-12 ${scrolled ? 'h-[70px]' : 'h-[82px]'}`}>
           <Brand light />
@@ -300,101 +598,94 @@ function App() {
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-4 lg:flex">
             <a
-              href={whatsapp("Assalam-o-Alaikum MMG International. Please share your latest wholesale collections and prices.")}
+              href={whatsapp('Assalam-o-Alaikum. Please send me the complete MMG wholesale catalogue with prices.')}
               target="_blank"
               rel="noreferrer"
-              className="hidden min-h-11 items-center gap-2 bg-gold px-5 text-[9px] font-bold uppercase tracking-[0.17em] text-forest transition-all hover:-translate-y-0.5 hover:bg-gold-soft sm:flex"
+              className="inline-flex min-h-10 items-center gap-2 border border-white/20 px-5 text-[9px] font-bold uppercase tracking-[0.17em] text-white/75 transition-colors hover:border-gold hover:bg-gold hover:text-forest"
             >
-              <FaWhatsapp size={17} />
-              WhatsApp us
+              <FaWhatsapp size={15} className="text-[#25d366]" /> Wholesale pricing
             </a>
-            <button
-              type="button"
-              className="grid size-11 place-items-center border border-white/30 text-white lg:hidden"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((open) => !open)}
-            >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
+          <button
+            type="button"
+            className="grid size-10 place-items-center text-white lg:hidden"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
+
+        {/* Mobile menu */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              className="absolute inset-x-0 top-full border-t border-forest/10 bg-ivory px-6 pb-8 pt-4 shadow-2xl lg:hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden border-t border-white/10 bg-[#031713] lg:hidden"
             >
-              <nav className="flex flex-col" aria-label="Mobile navigation">
-                {navItems.map(([label, href], index) => (
-                  <motion.a
+              <nav className="flex flex-col px-5 py-6">
+                {navItems.map(([label, href]) => (
+                  <a
                     key={href}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="border-b border-forest/10 py-5 font-display text-3xl text-forest"
+                    className="border-b border-white/8 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
                   >
                     {label}
-                  </motion.a>
+                  </a>
                 ))}
+                <a
+                  href={whatsapp('Assalam-o-Alaikum. Please send me the complete MMG wholesale catalogue.')}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 inline-flex items-center justify-center gap-2 bg-[#25d366] py-4 text-[10px] font-bold uppercase tracking-[0.18em] text-white"
+                >
+                  <FaWhatsapp size={17} /> Chat on WhatsApp
+                </a>
               </nav>
-              <a
-                href={whatsapp('Please send me your latest Bedding and Ladies Suiting catalogues.')}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-7 flex items-center justify-center gap-2 bg-forest p-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
-              >
-                <FaWhatsapp size={18} /> Chat on WhatsApp
-              </a>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
 
       <main>
-        <section id="home" className="hero-showroom relative isolate -mt-[82px] min-h-[calc(100svh-36px)] overflow-hidden bg-forest pt-[82px] text-white">
-          <img
-            src="/mmg-showroom-hero.png"
-            alt="MMG International showroom filled with premium bedding collections"
-            width="1918"
-            height="820"
-            fetchPriority="high"
-            className="absolute inset-0 -z-20 size-full object-cover object-[52%_center] sm:object-center"
-          />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,23,19,.97)_0%,rgba(3,23,19,.86)_34%,rgba(3,23,19,.38)_64%,rgba(3,23,19,.12)_100%)]" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#031713]/75 via-transparent to-black/20" />
-          <div className="mx-auto flex min-h-[calc(100svh-36px)] max-w-[1500px] items-center px-5 py-20 sm:px-8 lg:px-12 lg:py-16">
-            <motion.div initial="hidden" animate="show" className="relative z-10 max-w-3xl lg:w-[52%]">
-              <motion.div variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }} transition={{ duration: 0.7 }}>
-                <Eyebrow light>Premium wholesale textiles · Faisalabad</Eyebrow>
+        {/* Hero */}
+        <section id="home" className="relative isolate min-h-[92vh] overflow-hidden bg-[#061b17] px-5 pb-20 pt-24 sm:px-8 sm:pt-28 lg:px-12 lg:pt-36">
+          <div className="texture-grid pointer-events-none absolute inset-0 opacity-20" />
+          <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
+          <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
+          <div className="mx-auto grid max-w-[1320px] items-center gap-14 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
+            <motion.div
+              variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } }}
+              initial="hidden"
+              animate="show"
+            >
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+              >
+                <Eyebrow light>MMG International · Faisalabad</Eyebrow>
               </motion.div>
               <motion.h1
-                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}
-                className="font-display text-[clamp(4rem,7.2vw,7.8rem)] font-semibold leading-[0.82] tracking-[-0.05em]"
+                variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
+                transition={{ duration: 0.85, delay: 0.22 }}
+                className="font-display text-[clamp(4.2rem,9vw,9.5rem)] font-semibold leading-[0.84] tracking-[-0.05em] text-white"
               >
-                {['Fabric', 'with', 'forward', 'motion.'].map((word, index) => (
-                  <motion.span
-                    key={word}
-                    variants={{ hidden: { opacity: 0, y: 55, rotateX: -40 }, show: { opacity: 1, y: 0, rotateX: 0 } }}
-                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                    className={`block origin-bottom ${index > 1 ? 'text-gold-soft' : ''}`}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                Two Worlds.<br />
+                <span className="italic text-gold-soft">One Standard.</span>
               </motion.h1>
               <motion.p
                 variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
-                transition={{ duration: 0.75, delay: 0.55 }}
-                className="mt-8 max-w-xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8"
+                transition={{ duration: 0.75, delay: 0.44 }}
+                className="mt-7 max-w-lg text-sm leading-7 text-white/55"
               >
-                Premium Bedding and Ladies Suiting collections curated for retailers, distributors and ambitious textile businesses across Pakistan.
+                Premium wholesale bedding and ladies suiting collections for textile businesses across Pakistan. Click any collection to explore our full gallery.
               </motion.p>
               <motion.div
                 variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
@@ -420,6 +711,26 @@ function App() {
                 ))}
               </motion.div>
             </motion.div>
+
+            {/* Hero collage */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.2, 0.75, 0.25, 1] }}
+              className="hero-collage relative hidden h-[640px] lg:block"
+            >
+              <div className="hero-image hero-image-fashion">
+                <img src="/collections/chamki-lawn.jpeg" alt="Chamki Lawn ladies suiting" className="size-full object-cover object-top" loading="eager" />
+                <span>Ladies Suiting</span>
+              </div>
+              <div className="hero-image hero-image-bedding">
+                <img src="/collections/royal-fit.jpg" alt="Royal Fit bedding" className="size-full object-cover object-[center_42%]" loading="eager" />
+                <span>Bedding</span>
+              </div>
+              <div className="hero-image hero-image-detail">
+                <img src="/collections/elga-premium.jpg" alt="Elga Premium bedding" className="size-full object-cover" loading="lazy" />
+              </div>
+            </motion.div>
           </div>
           <a href="#collection-index" aria-label="Scroll to the collection index" className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[8px] font-bold uppercase tracking-[0.28em] text-white/40 xl:flex">
             Discover
@@ -427,6 +738,7 @@ function App() {
           </a>
         </section>
 
+        {/* Marquee */}
         <div className="marquee overflow-hidden border-b border-forest/10 bg-gold py-3 text-[9px] font-bold uppercase tracking-[0.28em] text-forest">
           <div className="marquee-track flex min-w-max items-center gap-9">
             {[...Array(2)].flatMap((_, group) => ['Royal Fit', 'Elga Premium', 'Elga Signature', 'Chamki Lawn', 'Classic Digital Lawn', 'Snow Flake'].map((item) => (
@@ -435,6 +747,7 @@ function App() {
           </div>
         </div>
 
+        {/* Collection index */}
         <section id="collection-index" className="px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1320px]">
             <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
@@ -451,8 +764,14 @@ function App() {
 
             <div className="mt-16 grid gap-5 lg:mt-24 lg:grid-cols-2">
               <Reveal>
-                <a href="#bedding" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                  <img src="/collections/royal-fit.jpg" alt="Royal Fit bedding" className="absolute inset-0 size-full object-cover object-[center_42%] transition-transform duration-[1400ms] group-hover:scale-105" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    document.getElementById('bedding')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="collection-gateway group relative flex min-h-[540px] w-full overflow-hidden bg-forest p-8 text-white sm:p-11"
+                >
+                  <img src="/collections/royal-fit.jpg" alt="Royal Fit bedding" className="absolute inset-0 size-full object-cover object-[center_42%] transition-transform duration-[1400ms] group-hover:scale-105" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/25 to-black/10" />
                   <div className="relative mt-auto w-full">
                     <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
@@ -462,11 +781,17 @@ function App() {
                     <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Beautifully coordinated fitted, printed and textured bedding collections for a premium bedroom story.</p>
                     <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View bedding <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                   </div>
-                </a>
+                </button>
               </Reveal>
               <Reveal delay={0.1}>
-                <a href="#ladies-suiting" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                  <img src="/collections/chamki-lawn.jpeg" alt="Chamki Lawn ladies suiting" className="absolute inset-0 size-full object-cover object-top transition-transform duration-[1400ms] group-hover:scale-105" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    document.getElementById('ladies-suiting')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="collection-gateway group relative flex min-h-[540px] w-full overflow-hidden bg-forest p-8 text-white sm:p-11"
+                >
+                  <img src="/collections/chamki-lawn.jpeg" alt="Chamki Lawn ladies suiting" className="absolute inset-0 size-full object-cover object-top transition-transform duration-[1400ms] group-hover:scale-105" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/20 to-black/5" />
                   <div className="relative mt-auto w-full">
                     <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
@@ -476,12 +801,13 @@ function App() {
                     <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Expressive lawn, digital florals and summer colour stories curated for modern seasonal dressing.</p>
                     <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View ladies suiting <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                   </div>
-                </a>
+                </button>
               </Reveal>
             </div>
           </div>
         </section>
 
+        {/* Bedding section */}
         <section id="bedding" className="relative overflow-hidden bg-[#061b17] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="texture-grid pointer-events-none absolute inset-0 opacity-25" />
           <div className="absolute -right-44 top-32 size-[520px] rounded-full border border-gold/10" />
@@ -495,13 +821,15 @@ function App() {
                 <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Five bedding identities—from exact fitted comfort to expressive florals and refined satin texture—ready for your next wholesale selection.</p>
               </Reveal>
             </div>
-
             <div className="mt-16 grid gap-5 lg:mt-24 lg:grid-cols-12">
-              {bedding.map((item, index) => <CollectionCard key={item.title} item={item} index={index} type="bedding" />)}
+              {bedding.map((item, index) => (
+                <CollectionCard key={item.title} item={item} index={index} type="bedding" onOpenGallery={openGallery} />
+              ))}
             </div>
           </div>
         </section>
 
+        {/* Ladies Suiting section */}
         <section id="ladies-suiting" className="relative px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
           <div className="mx-auto max-w-[1320px]">
             <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_.8fr]">
@@ -513,13 +841,15 @@ function App() {
                 <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">Six expressive ranges, each with its own fabric story—from shimmering festive lawn to vivid summer prints and classic digital florals.</p>
               </Reveal>
             </div>
-
             <div className="mt-16 grid gap-5 md:grid-cols-2 lg:mt-24 lg:grid-cols-3">
-              {ladiesSuiting.map((item, index) => <CollectionCard key={item.title} item={item} index={index} type="ladies" />)}
+              {ladiesSuiting.map((item, index) => (
+                <CollectionCard key={item.title} item={item} index={index} type="ladies" onOpenGallery={openGallery} />
+              ))}
             </div>
           </div>
         </section>
 
+        {/* Our Standard section */}
         <section id="our-standard" className="border-y border-forest/10 bg-[#efe8da] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
           <div className="mx-auto max-w-[1320px]">
             <Reveal className="max-w-4xl">
@@ -545,14 +875,9 @@ function App() {
           </div>
         </section>
 
+        {/* Contact section */}
         <section id="contact" className="relative isolate overflow-hidden bg-forest px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12">
-          <img
-            src="/mmg-showroom-hero.png"
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            className="absolute inset-0 -z-30 size-full object-cover object-center"
-          />
+          <img src="/mmg-showroom-hero.png" alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 -z-30 size-full object-cover object-center" />
           <div className="absolute inset-0 -z-20 bg-[#031713]/78" />
           <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#031713]/95 via-[#031713]/72 to-[#031713]/40" />
           <div className="absolute -right-32 -top-40 -z-10 size-[520px] rounded-full border border-gold/20" />
@@ -571,24 +896,26 @@ function App() {
         </section>
       </main>
 
+      {/* Footer */}
       <footer className="bg-[#031713] px-5 pb-8 pt-20 text-white sm:px-8 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
           <div className="grid gap-14 border-b border-white/10 pb-16 lg:grid-cols-[1.2fr_.7fr_1fr]">
-            <div><Brand light /><p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding and ladies suiting collections for textile businesses across Pakistan.</p></div>
+            <div>
+              <Brand light />
+              <p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding and ladies suiting collections for textile businesses across Pakistan.</p>
+            </div>
             <div>
               <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">Collections</h3>
-              <div className="mt-6 flex flex-col gap-3"><a href="#bedding" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Bedding</a><a href="#ladies-suiting" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Ladies Suiting</a><a href="#our-standard" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Our Standard</a></div>
+              <div className="mt-6 flex flex-col gap-3">
+                <a href="#bedding" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Bedding</a>
+                <a href="#ladies-suiting" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Ladies Suiting</a>
+                <a href="#our-standard" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Our Standard</a>
+              </div>
             </div>
             <div>
               <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">Contact</h3>
               <div className="mt-6 space-y-4 text-sm text-white/55">
-                <a
-                  href="https://maps.app.goo.gl/1RrrCTT1iW289HPz9?g_st=awb"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Open MMG International FSD location in Google Maps"
-                  className="group flex items-start gap-3 transition-colors hover:text-white"
-                >
+                <a href="https://maps.app.goo.gl/1RrrCTT1iW289HPz9?g_st=awb" target="_blank" rel="noreferrer" aria-label="Open MMG International FSD location in Google Maps" className="group flex items-start gap-3 transition-colors hover:text-white">
                   <MapPin size={17} className="mt-0.5 shrink-0 text-gold transition-transform group-hover:-translate-y-0.5" />
                   <span><strong className="font-semibold text-white/75">MMG International FSD</strong><br />Masha Allah Plaza, Habib Center Street,<br />Factory Area, Faisalabad, Pakistan</span>
                 </a>
@@ -604,6 +931,7 @@ function App() {
         </div>
       </footer>
 
+      {/* WhatsApp floating button */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end sm:bottom-7 sm:right-7">
         <AnimatePresence>
           {whatsappOpen && (
@@ -617,12 +945,7 @@ function App() {
               className="mb-4 w-[calc(100vw-40px)] max-w-[350px] overflow-hidden rounded-2xl bg-white shadow-[0_24px_75px_rgba(0,0,0,.28)]"
             >
               <div className="relative bg-[#075e54] px-5 pb-5 pt-6 text-white">
-                <button
-                  type="button"
-                  onClick={() => setWhatsappOpen(false)}
-                  className="absolute right-3 top-3 grid size-8 place-items-center rounded-full text-white/65 transition-colors hover:bg-white/10 hover:text-white"
-                  aria-label="Close WhatsApp popup"
-                >
+                <button type="button" onClick={() => setWhatsappOpen(false)} className="absolute right-3 top-3 grid size-8 place-items-center rounded-full text-white/65 transition-colors hover:bg-white/10 hover:text-white" aria-label="Close WhatsApp popup">
                   <X size={17} />
                 </button>
                 <div className="flex items-center gap-3">
@@ -642,29 +965,10 @@ function App() {
                   <p className="mt-2 text-right text-[9px] text-forest/35">Now</p>
                 </div>
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <a
-                    href={whatsapp('Assalam-o-Alaikum. Please share the complete Bedding collection catalogue and wholesale prices.')}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
-                  >
-                    Bedding
-                  </a>
-                  <a
-                    href={whatsapp('Assalam-o-Alaikum. Please share the complete Ladies Suiting collection catalogue and wholesale prices.')}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
-                  >
-                    Ladies Suiting
-                  </a>
+                  <a href={whatsapp('Assalam-o-Alaikum. Please share the complete Bedding collection catalogue and wholesale prices.')} target="_blank" rel="noreferrer" className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]">Bedding</a>
+                  <a href={whatsapp('Assalam-o-Alaikum. Please share the complete Ladies Suiting collection catalogue and wholesale prices.')} target="_blank" rel="noreferrer" className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]">Ladies Suiting</a>
                 </div>
-                <a
-                  href={whatsapp("Assalam-o-Alaikum MMG International. Please send me your complete wholesale catalogue and latest prices.")}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25d366] px-5 text-[10px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_25px_rgba(37,211,102,.24)] transition-transform hover:-translate-y-0.5"
-                >
+                <a href={whatsapp("Assalam-o-Alaikum MMG International. Please send me your complete wholesale catalogue and latest prices.")} target="_blank" rel="noreferrer" className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25d366] px-5 text-[10px] font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_25px_rgba(37,211,102,.24)] transition-transform hover:-translate-y-0.5">
                   <FaWhatsapp size={19} /> Start conversation
                 </a>
               </div>
