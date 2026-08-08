@@ -1,4 +1,4 @@
-export const phone = '923239658666'
+export const phone = '923219658666'
 
 export const whatsapp = (message) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 

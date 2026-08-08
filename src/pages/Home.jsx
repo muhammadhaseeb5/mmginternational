@@ -310,7 +310,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.1} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
             <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding and Ladies Suiting catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
-            <a href="tel:+923239658666" className="inline-flex min-h-13 items-center justify-center gap-3 border border-white/30 px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-white transition-colors hover:border-gold hover:bg-gold hover:text-forest"><Phone size={15} />+92 323 9658666</a>
+            <a href="tel:+923219658666" className="inline-flex min-h-13 items-center justify-center gap-3 border border-white/30 px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-white transition-colors hover:border-gold hover:bg-gold hover:text-forest"><Phone size={15} />+92 321 9658666</a>
           </Reveal>
         </div>
       </section>

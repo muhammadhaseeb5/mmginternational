@@ -50,7 +50,7 @@ export default function Layout() {
       <div className="relative z-50 flex min-h-9 items-center justify-center bg-[#031713] px-5 text-center text-[9px] font-bold uppercase tracking-[0.23em] text-white/55 sm:justify-between sm:px-[5vw]">
         <span>Wholesale collections</span>
         <span className="hidden text-gold-soft/80 sm:block">Bedding &amp; Ladies Suiting</span>
-        <a className="hidden transition-colors hover:text-white md:block" href="tel:+923239658666">+92 323 9658666</a>
+        <a className="hidden transition-colors hover:text-white md:block" href="tel:+923219658666">+92 321 9658666</a>
       </div>
 
       <header className={`sticky top-0 z-40 border-b border-white/15 bg-[#031713]/92 backdrop-blur-xl transition-all duration-500 ${scrolled ? 'shadow-[0_10px_35px_rgba(0,0,0,.18)]' : ''}`}>
@@ -149,7 +149,7 @@ export default function Layout() {
                   <MapPin size={17} className="mt-0.5 shrink-0 text-gold transition-transform group-hover:-translate-y-0.5" />
                   <span><strong className="font-semibold text-white/75">MMG International FSD</strong><br />Masha Allah Plaza, Habib Center Street,<br />Factory Area, Faisalabad, Pakistan</span>
                 </a>
-                <a className="flex items-center gap-3 transition-colors hover:text-white" href="tel:+923239658666"><Phone size={16} className="text-gold" />+92 323 9658666</a>
+                <a className="flex items-center gap-3 transition-colors hover:text-white" href="tel:+923219658666"><Phone size={16} className="text-gold" />+92 321 9658666</a>
                 <a className="flex items-center gap-3 transition-colors hover:text-white" href="mailto:mmgsinternational@gmail.com"><Mail size={16} className="text-gold" />mmgsinternational@gmail.com</a>
               </div>
             </div>
