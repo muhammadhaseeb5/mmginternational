@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import CatalogueHub from './pages/CatalogueHub'
 import CatalogueItem from './pages/CatalogueItem'
 
+// ─── App ──────────────────────────────────────────────────────────────────────
 function App() {
   return (
     <>
