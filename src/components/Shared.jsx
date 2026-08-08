@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react'
 
 export function Brand({ light = false }) {
   return (
-    <Link to="/" className="group inline-flex items-center gap-3" aria-label="MMG International home">
+    <Link to="/" className="group inline-flex shrink-0 items-center gap-3" aria-label="MMG International home">
       <img
         src="/mmg-international-logo.png"
         alt=""
@@ -13,8 +13,8 @@ export function Brand({ light = false }) {
         className="size-12 object-contain transition-transform duration-500 group-hover:rotate-3 group-hover:scale-105 sm:size-14"
       />
       <span className="flex flex-col leading-none">
-        <strong className={`font-display text-xl tracking-wide ${light ? 'text-white' : 'text-forest'}`}>MMG</strong>
-        <span className={`mt-1.5 text-[8px] font-bold tracking-[0.32em] ${light ? 'text-gold-soft' : 'text-bronze'}`}>
+        <strong className={`font-display text-2xl font-semibold tracking-wide ${light ? 'text-white' : 'text-forest'}`}>MMG</strong>
+        <span className={`mt-1.5 text-[9px] font-bold tracking-[0.28em] ${light ? 'text-gold-soft' : 'text-bronze'}`}>
           INTERNATIONAL
         </span>
       </span>

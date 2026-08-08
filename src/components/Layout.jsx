@@ -56,9 +56,9 @@ export default function Layout() {
       <header className={`sticky top-0 z-40 border-b border-white/15 bg-[#031713]/92 backdrop-blur-xl transition-all duration-500 ${scrolled ? 'shadow-[0_10px_35px_rgba(0,0,0,.18)]' : ''}`}>
         <div className={`mx-auto flex max-w-[1500px] items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-12 ${scrolled ? 'h-[70px]' : 'h-[82px]'}`}>
           <Brand light />
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
+          <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary navigation">
             {navItems.map(([label, href]) => (
-              <a key={href} href={href} className="nav-link text-[10px] font-bold uppercase tracking-[0.18em] text-white/75 transition-colors hover:text-white">
+              <a key={href} href={href} className="nav-link text-[11px] font-bold uppercase tracking-[0.16em] text-white/85 transition-colors hover:text-gold-soft">
                 {label}
               </a>
             ))}
