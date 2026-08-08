@@ -61,10 +61,18 @@ export default function CollectionCard({ item, index, type = 'bedding', onOpen }
               <p className="max-w-md pt-4 text-sm leading-7 text-white/65">{item.description}</p>
             </div>
           </div>
-          <span className="mt-5 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
-            View all designs
-            <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-          </span>
+          <div className="mt-5 flex items-center justify-between gap-3">
+            {item.price && (
+              <div>
+                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/40">From</span>
+                <p className="font-display text-lg font-semibold text-gold-soft">{item.price}</p>
+              </div>
+            )}
+            <span className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
+              View all designs
+              <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+            </span>
+          </div>
         </div>
       </motion.button>
     </Reveal>
