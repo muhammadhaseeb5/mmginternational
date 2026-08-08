@@ -40,18 +40,10 @@ export default function CatalogueHub() {
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
                   <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">{item.overline}</p>
                   <h3 className="font-display text-3xl font-semibold leading-[.95] text-white">{item.title}</h3>
-                  <div className="mt-4 flex items-center justify-between gap-3">
-                    {item.price && (
-                      <div>
-                        <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/40">From</span>
-                        <p className="font-display text-base font-semibold text-gold-soft">{item.price}</p>
-                      </div>
-                    )}
-                    <span className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
-                      View catalogue
-                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-                    </span>
-                  </div>
+                  <span className="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">
+                    View catalogue
+                    <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </span>
                 </div>
               </Link>
             </Reveal>

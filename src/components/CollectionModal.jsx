@@ -112,22 +112,6 @@ export default function CollectionModal({ type, items, activeIndex, onClose, onS
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">{item.overline}</p>
               <h3 className="mt-3 font-display text-4xl font-semibold leading-[.94] text-white sm:text-5xl">{item.title}</h3>
               <p className="mt-5 text-sm leading-7 text-white/60">{item.description}</p>
-              {(item.price || item.moq) && (
-                <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-white/10 pt-5">
-                  {item.price && (
-                    <div>
-                      <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/40">Price</p>
-                      <p className="mt-1 font-display text-xl text-gold-soft">{item.price}</p>
-                    </div>
-                  )}
-                  {item.moq && (
-                    <div>
-                      <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/40">MOQ</p>
-                      <p className="mt-1 font-display text-xl text-white">{item.moq}</p>
-                    </div>
-                  )}
-                </div>
-              )}
             </motion.div>
           </AnimatePresence>
 

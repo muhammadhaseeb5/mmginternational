@@ -73,22 +73,6 @@ export default function CatalogueItem() {
               {item.title}
             </h1>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-forest/55">{item.description}</p>
-            {(item.price || item.moq) && (
-              <div className="mt-5 flex flex-wrap gap-x-8 gap-y-2 border-t border-forest/10 pt-5">
-                {item.price && (
-                  <div>
-                    <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-forest/40">Price</p>
-                    <p className="mt-1 font-display text-xl text-bronze">{item.price}</p>
-                  </div>
-                )}
-                {item.moq && (
-                  <div>
-                    <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-forest/40">MOQ</p>
-                    <p className="mt-1 font-display text-xl text-forest">{item.moq}</p>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
           <a
             href={whatsapp(catalogueMessage(item, item.type))}
