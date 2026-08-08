@@ -53,7 +53,7 @@ export default function Layout() {
         <a className="hidden transition-colors hover:text-white md:block" href="tel:+923239658666">+92 323 9658666</a>
       </div>
 
-      <header className={`sticky top-0 z-40 border-b transition-all duration-500 ${scrolled ? 'border-white/15 bg-[#031713]/82 shadow-[0_10px_35px_rgba(0,0,0,.18)] backdrop-blur-xl' : 'border-white/15 bg-transparent'}`}>
+      <header className={`sticky top-0 z-40 border-b border-white/15 bg-[#031713]/92 backdrop-blur-xl transition-all duration-500 ${scrolled ? 'shadow-[0_10px_35px_rgba(0,0,0,.18)]' : ''}`}>
         <div className={`mx-auto flex max-w-[1500px] items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-12 ${scrolled ? 'h-[70px]' : 'h-[82px]'}`}>
           <Brand light />
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
