@@ -1,5 +1,15 @@
 export default {
   async fetch(request, env) {
-    return env.ASSETS.fetch(request)
+    const response = await env.ASSETS.fetch(request)
+
+    if (response.status !== 404) return response
+
+    const acceptsHtml = request.headers.get('accept')?.includes('text/html')
+    if (request.method !== 'GET' || !acceptsHtml) return response
+
+    const fallbackUrl = new URL(request.url)
+    fallbackUrl.pathname = '/index.html'
+
+    return env.ASSETS.fetch(new Request(fallbackUrl, request))
   },
 }
