@@ -4,7 +4,7 @@ import { Reveal } from './Shared'
 
 export default function CollectionCard({ item, index, type = 'bedding', onOpen }) {
   const isBedding = type === 'bedding'
-  const typeLabel = type === 'bedding' ? 'Bedding' : type === 'curtains' ? 'Curtains' : 'Ladies Suiting'
+  const typeLabel = type === 'bedding' ? 'Bedding' : type === 'curtains' ? 'Curtains' : type === 'clothes' ? 'Clothes Collections' : 'Ladies Suiting'
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
 

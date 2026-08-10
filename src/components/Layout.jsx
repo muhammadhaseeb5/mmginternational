@@ -49,14 +49,14 @@ export default function Layout() {
 
       <div className="relative z-50 flex min-h-9 items-center justify-center bg-[#031713] px-5 text-center text-[9px] font-bold uppercase tracking-[0.23em] text-white/55 sm:justify-between sm:px-[5vw]">
         <span>Wholesale collections</span>
-        <span className="hidden text-gold-soft/80 sm:block">Bedding · Ladies Suiting · Curtains</span>
+        <span className="hidden text-gold-soft/80 sm:block">Bedding · Ladies Suiting · Curtains · Clothes</span>
         <a className="hidden transition-colors hover:text-white md:block" href="tel:+923219658666">+92 321 9658666</a>
       </div>
 
       <header className={`sticky top-0 z-40 border-b border-white/15 bg-[#031713]/92 backdrop-blur-xl transition-all duration-500 ${scrolled ? 'shadow-[0_10px_35px_rgba(0,0,0,.18)]' : ''}`}>
         <div className={`mx-auto flex max-w-[1500px] items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:px-12 ${scrolled ? 'h-[70px]' : 'h-[82px]'}`}>
           <Brand light />
-          <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary navigation">
+          <nav className="hidden items-center gap-5 xl:flex 2xl:gap-8" aria-label="Primary navigation">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} className="nav-link text-[11px] font-bold uppercase tracking-[0.16em] text-white/85 transition-colors hover:text-gold-soft">
                 {label}
@@ -76,7 +76,7 @@ export default function Layout() {
             </a>
             <button
               type="button"
-              className="grid size-11 place-items-center border border-white/30 text-white lg:hidden"
+              className="grid size-11 place-items-center border border-white/30 text-white xl:hidden"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((open) => !open)}
@@ -91,7 +91,7 @@ export default function Layout() {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              className="absolute inset-x-0 top-full border-t border-forest/10 bg-ivory px-6 pb-8 pt-4 shadow-2xl lg:hidden"
+              className="absolute inset-x-0 top-full border-t border-forest/10 bg-ivory px-6 pb-8 pt-4 shadow-2xl xl:hidden"
             >
               <nav className="flex flex-col" aria-label="Mobile navigation">
                 {navItems.map(([label, href], index) => (
@@ -109,7 +109,7 @@ export default function Layout() {
                 ))}
               </nav>
               <a
-                href={whatsapp('Please send me your latest Bedding, Ladies Suiting and Curtains catalogues.')}
+                href={whatsapp('Please send me your latest Bedding, Ladies Suiting, Curtains and AGF catalogues.')}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-7 flex items-center justify-center gap-2 bg-forest p-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
@@ -126,13 +126,14 @@ export default function Layout() {
       <footer className="bg-[#031713] px-5 pb-8 pt-20 text-white sm:px-8 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
           <div className="grid gap-14 border-b border-white/10 pb-16 lg:grid-cols-[1.2fr_.7fr_1fr]">
-            <div><Brand light /><p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding, ladies suiting and curtain collections for textile businesses across Pakistan.</p></div>
+            <div><Brand light /><p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding, ladies suiting, curtains and clothes collections for textile businesses across Pakistan.</p></div>
             <div>
               <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">Collections</h3>
               <div className="mt-6 flex flex-col gap-3">
                 <a href="/#bedding" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Bedding</a>
                 <a href="/#ladies-suiting" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Ladies Suiting</a>
                 <a href="/#curtains" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Curtains</a>
+                <a href="/#clothes-collections" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Clothes Collections</a>
                 <a href="/catalogue" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Full Catalogue</a>
                 <a href="/#our-standard" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Our Standard</a>
               </div>
@@ -220,9 +221,17 @@ export default function Layout() {
                     href={whatsapp('Assalam-o-Alaikum. Please share the complete Curtains collection catalogue and wholesale prices.')}
                     target="_blank"
                     rel="noreferrer"
-                    className="col-span-2 rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
+                    className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
                   >
                     Curtains
+                  </a>
+                  <a
+                    href={whatsapp('Assalam-o-Alaikum. Please share the complete AGF Clothes Collection catalogue and wholesale prices.')}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
+                  >
+                    AGF Clothes
                   </a>
                 </div>
                 <a

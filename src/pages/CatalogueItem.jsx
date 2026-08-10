@@ -11,6 +11,7 @@ const typeLabels = {
   bedding: 'Bedding',
   ladies: 'Ladies Suiting',
   curtains: 'Curtains',
+  clothes: 'Clothes Collections',
 }
 
 const designLabel = (src, index) => {
@@ -19,6 +20,11 @@ const designLabel = (src, index) => {
 
   if (curtainMatch) {
     return `Style ${curtainMatch[1]} · ${curtainMatch[2].replaceAll('_', ' ')}`
+  }
+
+  const clothesMatch = fileName.match(/^(\d+)\s+(.+)$/)
+  if (clothesMatch) {
+    return `Code ${clothesMatch[1]} · ${clothesMatch[2]}`
   }
 
   return `Design ${index + 1}`

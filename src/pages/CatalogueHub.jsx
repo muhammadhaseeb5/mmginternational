@@ -7,6 +7,7 @@ const typeLabels = {
   bedding: 'Bedding',
   ladies: 'Ladies Suiting',
   curtains: 'Curtains',
+  clothes: 'Clothes Collections',
 }
 
 export default function CatalogueHub() {
