@@ -27,6 +27,11 @@ const designLabel = (src, index) => {
     return `Code ${clothesMatch[1]} · ${clothesMatch[2]}`
   }
 
+  const superGfMatch = fileName.match(/^SUPER GF LAWN MOCKUP (\d+)$/i)
+  if (superGfMatch) {
+    return `Mockup ${superGfMatch[1]}`
+  }
+
   return `Design ${index + 1}`
 }
 

@@ -91,9 +91,9 @@ export const ladiesSuiting = [
   },
   {
     slug: 'elga-summer-collection',
-    title: 'Elga Summer Collection',
-    overline: 'Summer edit',
-    description: 'Fresh colour stories and expressive patterns made for the energy of summer.',
+    title: 'Super GF Summer Collection',
+    overline: 'Super GF summer edit',
+    description: 'A vibrant summer lawn collection featuring expressive prints and coordinated colour stories.',
     image: '/collections/elga-summer-collection.jpg',
     position: 'center top',
   },
