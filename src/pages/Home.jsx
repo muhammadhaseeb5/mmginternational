@@ -4,7 +4,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { ArrowDown, ArrowRight, Check, Gem, Layers3, Phone, Sparkles, Truck } from 'lucide-react'
 import { whatsapp } from '../lib/whatsapp'
 import { useMediaQuery } from '../hooks/useMediaQuery'
-import { bedding, ladiesSuiting, collectionsByType, heroParticles } from '../data/collections'
+import { bedding, ladiesSuiting, curtains, collectionsByType, heroParticles } from '../data/collections'
 import { Reveal, Eyebrow, PrimaryLink } from '../components/Shared'
 import CollectionCard from '../components/CollectionCard'
 import FeaturedShowcase from '../components/FeaturedShowcase'
@@ -21,8 +21,8 @@ const benefits = [
   },
   {
     icon: Layers3,
-    title: 'Two complete worlds',
-    text: 'Five bedding ranges and six ladies suiting ranges, curated under one trusted textile house.',
+    title: 'Three complete worlds',
+    text: 'Bedding, ladies suiting and statement curtains, curated under one trusted textile house.',
   },
   {
     icon: Truck,
@@ -100,7 +100,7 @@ export default function Home() {
               transition={{ duration: 0.75, delay: 0.55 }}
               className="mt-8 max-w-xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8"
             >
-              Premium Bedding and Ladies Suiting collections curated for retailers, distributors and ambitious textile businesses across Pakistan.
+              Premium Bedding, Ladies Suiting and Curtains curated for retailers, distributors and ambitious textile businesses across Pakistan.
             </motion.p>
             <motion.div
               variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
@@ -122,7 +122,7 @@ export default function Home() {
               transition={{ delay: 0.9 }}
               className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/45"
             >
-              {['2 collections', '11 signature ranges', 'Nationwide supply'].map((point) => (
+              {['3 product worlds', '12 signature ranges', 'Nationwide supply'].map((point) => (
                 <span key={point} className="flex items-center gap-2"><Check size={13} className="text-gold" />{point}</span>
               ))}
             </motion.div>
@@ -154,7 +154,7 @@ export default function Home() {
 
       <div className="marquee overflow-hidden border-b border-forest/10 bg-gold py-3 text-[9px] font-bold uppercase tracking-[0.28em] text-forest">
         <div className="marquee-track flex min-w-max items-center gap-9">
-          {[...Array(2)].flatMap((_, group) => ['Royal Fit', 'Elga Premium', 'Elga Signature', 'Chamki Lawn', 'Classic Digital Lawn', 'Snow Flake'].map((item) => (
+          {[...Array(2)].flatMap((_, group) => ['Royal Fit', 'Elga Premium', 'Curtains', 'Chamki Lawn', 'Classic Digital Lawn', 'Snow Flake'].map((item) => (
             <span key={`${group}-${item}`} className="flex items-center gap-9"><Sparkles size={12} />{item}</span>
           )))}
         </div>
@@ -162,8 +162,8 @@ export default function Home() {
 
       <section className="border-b border-white/10 bg-[#071d19] px-5 py-14 text-white sm:px-8 lg:px-12">
         <div className="mx-auto grid max-w-[1320px] grid-cols-2 gap-8 sm:grid-cols-4">
-          <Reveal><StatCounter value={2} label="Product Worlds" /></Reveal>
-          <Reveal delay={0.08}><StatCounter value={11} suffix="+" label="Signature Ranges" /></Reveal>
+          <Reveal><StatCounter value={3} label="Product Worlds" /></Reveal>
+          <Reveal delay={0.08}><StatCounter value={12} suffix="+" label="Signature Ranges" /></Reveal>
           <Reveal delay={0.16}><StatCounter value={100} suffix="%" label="Wholesale Focused" /></Reveal>
           <Reveal delay={0.24}>
             <div>
@@ -181,7 +181,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
             <Reveal>
               <Eyebrow>The collection house</Eyebrow>
-              <p className="max-w-sm text-sm leading-7 text-ink/55">Two distinct product worlds, presented with one uncompromising MMG standard.</p>
+              <p className="max-w-sm text-sm leading-7 text-ink/55">Three distinct product worlds, presented with one uncompromising MMG standard.</p>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="font-display text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-forest">
@@ -216,6 +216,20 @@ export default function Home() {
                   <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Ladies Suiting</h3>
                   <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Expressive lawn, digital florals and summer colour stories curated for modern seasonal dressing.</p>
                   <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View ladies suiting <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
+                </div>
+              </a>
+            </Reveal>
+            <Reveal className="lg:col-span-2" delay={0.14}>
+              <a href="#curtains" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
+                <img src="/collections/curtains.jpeg" alt="Champagne Blush velvet embroidery curtain" className="absolute inset-0 size-full object-cover object-[center_35%] transition-transform duration-[1400ms] group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/28 to-black/5" />
+                <div className="relative mt-auto w-full">
+                  <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
+                    <span>Collection 03</span><span>20 colourways</span>
+                  </div>
+                  <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Curtains</h3>
+                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Rich velvet, fine embroidery and graceful net panels in a complete palette of elegant interior colours.</p>
+                  <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View curtains <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                 </div>
               </a>
             </Reveal>
@@ -265,6 +279,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="curtains" className="relative overflow-hidden bg-[#061b17] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+        <div className="texture-grid pointer-events-none absolute inset-0 opacity-25" />
+        <div className="absolute -left-44 top-32 size-[520px] rounded-full border border-gold/10" />
+        <div className="relative mx-auto max-w-[1320px]">
+          <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
+            <Reveal>
+              <Eyebrow light>Collection 03 · Curtains</Eyebrow>
+              <h2 className="font-display text-[clamp(4rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rooms, <span className="italic text-gold-soft">transformed.</span></h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Twenty velvet and embroidery-net curtain colourways—from Champagne Blush to Charcoal—created for an elegant, finished interior. Tap the collection to browse every design.</p>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 max-w-4xl lg:mt-24">
+            {curtains.map((item, index) => (
+              <CollectionCard key={item.title} item={item} index={index} type="curtains" onOpen={() => openCollection('curtains', index)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="our-standard" className="border-y border-forest/10 bg-[#efe8da] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
           <Reveal className="max-w-4xl">
@@ -285,7 +321,7 @@ export default function Home() {
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-bronze">Wholesale ordering</p>
               <h3 className="mt-3 font-display text-3xl font-semibold text-forest sm:text-4xl">Choose a range. Share your quantity. Receive current pricing.</h3>
             </div>
-            <PrimaryLink href={whatsapp('Please guide me through placing a wholesale order for MMG bedding or ladies suiting.')}>Start an order</PrimaryLink>
+            <PrimaryLink href={whatsapp('Please guide me through placing a wholesale order for MMG bedding, ladies suiting or curtains.')}>Start an order</PrimaryLink>
           </Reveal>
         </div>
       </section>
@@ -309,7 +345,7 @@ export default function Home() {
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us the collection, quantity and delivery city. Our team will respond with current availability and wholesale prices.</p>
           </Reveal>
           <Reveal delay={0.1} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
-            <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding and Ladies Suiting catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
+            <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding, Ladies Suiting and Curtains catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
             <a href="tel:+923219658666" className="inline-flex min-h-13 items-center justify-center gap-3 border border-white/30 px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-white transition-colors hover:border-gold hover:bg-gold hover:text-forest"><Phone size={15} />+92 321 9658666</a>
           </Reveal>
         </div>

@@ -7,6 +7,23 @@ import { findBySlug } from '../data/collections'
 import { catalogueMessage, whatsapp } from '../lib/whatsapp'
 import { Eyebrow, Reveal } from '../components/Shared'
 
+const typeLabels = {
+  bedding: 'Bedding',
+  ladies: 'Ladies Suiting',
+  curtains: 'Curtains',
+}
+
+const designLabel = (src, index) => {
+  const fileName = decodeURIComponent(src.split('/').pop() || '').replace(/\.[^.]+$/, '')
+  const curtainMatch = fileName.match(/^\d+_(\d+-\d+)_(.+)$/)
+
+  if (curtainMatch) {
+    return `Style ${curtainMatch[1]} · ${curtainMatch[2].replaceAll('_', ' ')}`
+  }
+
+  return `Design ${index + 1}`
+}
+
 export default function CatalogueItem() {
   const { slug } = useParams()
   const item = findBySlug(slug)
@@ -57,7 +74,7 @@ export default function CatalogueItem() {
     )
   }
 
-  const typeLabel = item.type === 'bedding' ? 'Bedding' : 'Ladies Suiting'
+  const typeLabel = typeLabels[item.type]
 
   return (
     <main className="px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
@@ -100,25 +117,30 @@ export default function CatalogueItem() {
 
         {images && (
           <div className="mt-10 columns-2 gap-4 sm:columns-3 lg:columns-4 [column-fill:balance]">
-            {images.map((src, index) => (
-              <button
-                key={src}
-                type="button"
-                onClick={() => setLightboxIndex(index)}
-                className="collection-card group relative mb-4 block w-full overflow-hidden break-inside-avoid bg-[#0a201b] shadow-[0_16px_40px_rgba(7,29,25,.12)]"
-                aria-label={`Open design ${index + 1} of ${item.title}`}
-              >
-                <img
-                  src={src}
-                  alt={`${item.title} design ${index + 1}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="block w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="shine-sweep" />
-              </button>
-            ))}
+            {images.map((src, index) => {
+              const label = designLabel(src, index)
+
+              return (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setLightboxIndex(index)}
+                  className="collection-card group relative mb-4 block w-full overflow-hidden break-inside-avoid bg-[#0a201b] shadow-[0_16px_40px_rgba(7,29,25,.12)]"
+                  aria-label={`Open ${label} from ${item.title}`}
+                >
+                  <img
+                    src={src}
+                    alt={`${item.title} ${label}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="block w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="absolute inset-x-0 bottom-0 z-10 p-4 text-left text-[9px] font-bold uppercase tracking-[0.16em] text-white/90">{label}</span>
+                  <span className="shine-sweep" />
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
@@ -170,13 +192,16 @@ export default function CatalogueItem() {
             <motion.img
               key={images[lightboxIndex]}
               src={images[lightboxIndex]}
-              alt={`${item.title} design ${lightboxIndex + 1}`}
+              alt={`${item.title} ${designLabel(images[lightboxIndex], lightboxIndex)}`}
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.3 }}
               className="max-h-[86vh] max-w-[92vw] object-contain shadow-[0_30px_100px_rgba(0,0,0,.5)]"
             />
+            <span className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/55 px-4 py-2 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
+              {designLabel(images[lightboxIndex], lightboxIndex)}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>

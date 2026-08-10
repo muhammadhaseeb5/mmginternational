@@ -17,7 +17,7 @@ export default function FeaturedShowcase({ onOpen }) {
 
   const current = featuredList[active]
   const { item } = current
-  const typeLabel = current.type === 'bedding' ? 'Bedding' : 'Ladies Suiting'
+  const typeLabel = current.type === 'bedding' ? 'Bedding' : current.type === 'curtains' ? 'Curtains' : 'Ladies Suiting'
 
   return (
     <section className="relative overflow-hidden bg-[#04120f] text-white">

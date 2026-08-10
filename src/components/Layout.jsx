@@ -49,7 +49,7 @@ export default function Layout() {
 
       <div className="relative z-50 flex min-h-9 items-center justify-center bg-[#031713] px-5 text-center text-[9px] font-bold uppercase tracking-[0.23em] text-white/55 sm:justify-between sm:px-[5vw]">
         <span>Wholesale collections</span>
-        <span className="hidden text-gold-soft/80 sm:block">Bedding &amp; Ladies Suiting</span>
+        <span className="hidden text-gold-soft/80 sm:block">Bedding · Ladies Suiting · Curtains</span>
         <a className="hidden transition-colors hover:text-white md:block" href="tel:+923219658666">+92 321 9658666</a>
       </div>
 
@@ -109,7 +109,7 @@ export default function Layout() {
                 ))}
               </nav>
               <a
-                href={whatsapp('Please send me your latest Bedding and Ladies Suiting catalogues.')}
+                href={whatsapp('Please send me your latest Bedding, Ladies Suiting and Curtains catalogues.')}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-7 flex items-center justify-center gap-2 bg-forest p-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
@@ -126,12 +126,13 @@ export default function Layout() {
       <footer className="bg-[#031713] px-5 pb-8 pt-20 text-white sm:px-8 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
           <div className="grid gap-14 border-b border-white/10 pb-16 lg:grid-cols-[1.2fr_.7fr_1fr]">
-            <div><Brand light /><p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding and ladies suiting collections for textile businesses across Pakistan.</p></div>
+            <div><Brand light /><p className="mt-7 max-w-sm text-sm leading-7 text-white/45">Premium wholesale bedding, ladies suiting and curtain collections for textile businesses across Pakistan.</p></div>
             <div>
               <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">Collections</h3>
               <div className="mt-6 flex flex-col gap-3">
                 <a href="/#bedding" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Bedding</a>
                 <a href="/#ladies-suiting" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Ladies Suiting</a>
+                <a href="/#curtains" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Curtains</a>
                 <a href="/catalogue" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Full Catalogue</a>
                 <a href="/#our-standard" className="w-fit text-sm text-white/55 transition-colors hover:text-white">Our Standard</a>
               </div>
@@ -214,6 +215,14 @@ export default function Layout() {
                     className="rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
                   >
                     Ladies Suiting
+                  </a>
+                  <a
+                    href={whatsapp('Assalam-o-Alaikum. Please share the complete Curtains collection catalogue and wholesale prices.')}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="col-span-2 rounded-lg border border-[#075e54]/15 bg-white px-3 py-3 text-center text-[9px] font-bold uppercase tracking-[0.14em] text-[#075e54] transition-colors hover:bg-[#e7f6ef]"
+                  >
+                    Curtains
                   </a>
                 </div>
                 <a

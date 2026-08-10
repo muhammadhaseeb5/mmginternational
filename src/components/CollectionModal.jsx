@@ -7,7 +7,7 @@ import { catalogueMessage, whatsapp } from '../lib/whatsapp'
 
 export default function CollectionModal({ type, items, activeIndex, onClose, onSelectIndex }) {
   const item = items[activeIndex]
-  const typeLabel = type === 'bedding' ? 'Bedding' : 'Ladies Suiting'
+  const typeLabel = type === 'bedding' ? 'Bedding' : type === 'curtains' ? 'Curtains' : 'Ladies Suiting'
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'

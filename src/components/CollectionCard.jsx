@@ -4,6 +4,7 @@ import { Reveal } from './Shared'
 
 export default function CollectionCard({ item, index, type = 'bedding', onOpen }) {
   const isBedding = type === 'bedding'
+  const typeLabel = type === 'bedding' ? 'Bedding' : type === 'curtains' ? 'Curtains' : 'Ladies Suiting'
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
 
@@ -47,7 +48,7 @@ export default function CollectionCard({ item, index, type = 'bedding', onOpen }
         <span className="shine-sweep" />
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-6 sm:p-8">
           <span className="border border-white/25 bg-black/15 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.24em] text-white backdrop-blur-md">
-            {type === 'bedding' ? 'Bedding' : 'Ladies Suiting'}
+            {typeLabel}
           </span>
           <span className="font-display text-xl italic text-white/70">{String(index + 1).padStart(2, '0')}</span>
         </div>

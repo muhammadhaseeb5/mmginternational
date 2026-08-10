@@ -1,6 +1,7 @@
 export const navItems = [
   ['Bedding', '/#bedding'],
   ['Ladies Suiting', '/#ladies-suiting'],
+  ['Curtains', '/#curtains'],
   ['Full Catalogue', 'https://mmginternational.store/catalogue'],
   ['Our Standard', '/#our-standard'],
   ['Contact', '/#contact'],
@@ -105,11 +106,24 @@ export const ladiesSuiting = [
   },
 ]
 
-export const collectionsByType = { bedding, ladies: ladiesSuiting }
+export const curtains = [
+  {
+    slug: 'curtains',
+    title: 'Curtains',
+    overline: 'New arrival',
+    description: 'Rich velvet curtains paired with fine embroidery net panels in twenty elegant colourways, finished for a luxurious room setting.',
+    image: '/collections/curtains.jpeg',
+    position: 'center top',
+    layout: 'lg:col-span-12',
+  },
+]
+
+export const collectionsByType = { bedding, ladies: ladiesSuiting, curtains }
 
 export const allCollectionItems = [
   ...bedding.map((item) => ({ ...item, type: 'bedding' })),
   ...ladiesSuiting.map((item) => ({ ...item, type: 'ladies' })),
+  ...curtains.map((item) => ({ ...item, type: 'curtains' })),
 ]
 
 export const findBySlug = (slug) => allCollectionItems.find((item) => item.slug === slug) ?? null
@@ -117,6 +131,7 @@ export const findBySlug = (slug) => allCollectionItems.find((item) => item.slug 
 export const featuredList = [
   ['bedding', 'Royal Fit'],
   ['ladies', 'Chamki Lawn'],
+  ['curtains', 'Curtains'],
   ['bedding', 'Elga Signature'],
   ['ladies', '3D Digital Poly Lilan Lawn'],
 ].map(([type, title]) => {

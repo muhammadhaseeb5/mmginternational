@@ -3,6 +3,12 @@ import { ArrowRight } from 'lucide-react'
 import { allCollectionItems } from '../data/collections'
 import { Reveal, Eyebrow } from '../components/Shared'
 
+const typeLabels = {
+  bedding: 'Bedding',
+  ladies: 'Ladies Suiting',
+  curtains: 'Curtains',
+}
+
 export default function CatalogueHub() {
   return (
     <main className="px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
@@ -35,7 +41,7 @@ export default function CatalogueHub() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/92 via-[#031713]/15 to-black/5" />
                 <span className="shine-sweep" />
                 <span className="absolute left-6 top-6 border border-white/25 bg-black/15 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.24em] text-white backdrop-blur-md">
-                  {item.type === 'bedding' ? 'Bedding' : 'Ladies Suiting'}
+                  {typeLabels[item.type]}
                 </span>
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
                   <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">{item.overline}</p>
