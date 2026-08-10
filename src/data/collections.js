@@ -3,7 +3,7 @@ export const navItems = [
   ['Ladies Suiting', '/#ladies-suiting'],
   ['Curtains', '/#curtains'],
   ['Clothes Collections', '/#clothes-collections'],
-  ['Full Catalogue', 'https://mmginternational.store/catalogue'],
+  ['Full Catalogue', '/catalogue'],
   ['Our Standard', '/#our-standard'],
   ['Contact', '/#contact'],
 ]
