@@ -124,7 +124,7 @@ export const clothesCollections = [
     slug: 'agf',
     title: 'AGF',
     overline: 'Clothes collection',
-    description: 'A versatile AGF printed-fabric catalogue featuring twenty-two floral, geometric and statement designs across a broad colour palette.',
+    description: 'A versatile AGF printed-fabric catalogue featuring 101 floral, geometric and statement designs across a broad colour palette.',
     image: '/collections/agf.jpg',
     position: 'center top',
     layout: 'lg:col-span-12',

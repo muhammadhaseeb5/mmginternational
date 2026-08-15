@@ -1,12 +1,11 @@
-import { Route, Routes } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import CatalogueHub from './pages/CatalogueHub'
 import CatalogueItem from './pages/CatalogueItem'
 
-// ─── App ──────────────────────────────────────────────────────────────────────
-function App() {
+export default function App() {
   return (
     <>
       <ScrollToTop />
@@ -20,5 +19,3 @@ function App() {
     </>
   )
 }
-
-export default App

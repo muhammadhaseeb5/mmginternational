@@ -32,6 +32,11 @@ const designLabel = (src, index) => {
     return `Mockup ${superGfMatch[1]}`
   }
 
+  const numericOnlyMatch = fileName.match(/^(\d+)$/)
+  if (numericOnlyMatch) {
+    return `Code ${numericOnlyMatch[1]}`
+  }
+
   return `Design ${index + 1}`
 }
 
