@@ -136,6 +136,17 @@ button { cursor: pointer; }
   .hero-particle, .mesh-blob { display: none; }
 }
 
+/* Drop the full-screen blended grain layer on phones/tablets: it forces a
+   compositing repaint on every scroll frame and hurts low-end mobile smoothness. */
+@media (max-width: 768px) {
+  .grain-overlay { display: none; }
+}
+
+/* Never let long display headings push a horizontal scrollbar on small screens. */
+@media (max-width: 480px) {
+  .font-display { overflow-wrap: break-word; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

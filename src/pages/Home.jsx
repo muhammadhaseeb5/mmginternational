@@ -82,7 +82,7 @@ export default function Home() {
             </motion.div>
             <motion.h1
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.12 } } }}
-              className="font-display text-[clamp(4rem,7.2vw,7.8rem)] font-semibold leading-[0.82] tracking-[-0.05em]"
+              className="font-display text-[clamp(3.2rem,7.2vw,7.8rem)] font-semibold leading-[0.82] tracking-[-0.05em]"
             >
               {['Fabric', 'with', 'forward', 'motion.'].map((word, index) => (
                 <motion.span
@@ -184,7 +184,7 @@ export default function Home() {
               <p className="max-w-sm text-sm leading-7 text-ink/55">Four distinct product worlds, presented with one uncompromising MMG standard.</p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="font-display text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-forest">
+              <h2 className="font-display text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-forest">
                 Your next bestseller <span className="italic text-bronze">starts here.</span>
               </h2>
             </Reveal>
@@ -199,7 +199,7 @@ export default function Home() {
                   <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
                     <span>Collection 01</span><span>05 ranges</span>
                   </div>
-                  <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Bedding</h3>
+                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Bedding</h3>
                   <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Beautifully coordinated fitted, printed and textured bedding collections for a premium bedroom story.</p>
                   <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View bedding <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                 </div>
@@ -213,7 +213,7 @@ export default function Home() {
                   <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
                     <span>Collection 02</span><span>06 ranges</span>
                   </div>
-                  <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Ladies Suiting</h3>
+                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Ladies Suiting</h3>
                   <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Expressive lawn, digital florals and summer colour stories curated for modern seasonal dressing.</p>
                   <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View ladies suiting <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                 </div>
@@ -227,7 +227,7 @@ export default function Home() {
                   <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
                     <span>Collection 03</span><span>20 colourways</span>
                   </div>
-                  <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Curtains</h3>
+                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Curtains</h3>
                   <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Rich velvet, fine embroidery and graceful net panels in a complete palette of elegant interior colours.</p>
                   <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View curtains <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                 </div>
@@ -239,9 +239,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/32 to-black/10" />
                 <div className="relative mt-auto w-full">
                   <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    <span>Collection 04</span><span>22 designs</span>
+                    <span>Collection 04</span><span>101 designs</span>
                   </div>
-                  <h3 className="font-display text-6xl font-semibold leading-none sm:text-7xl">Clothes Collections</h3>
+                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Clothes Collections</h3>
                   <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Explore the AGF printed-fabric catalogue with floral, geometric and statement designs labelled by code and colour.</p>
                   <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View AGF <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
                 </div>
@@ -258,7 +258,7 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
             <Reveal>
               <Eyebrow light>Collection 01 · Bedding</Eyebrow>
-              <h2 className="font-display text-[clamp(4rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rest, <span className="italic text-gold-soft">reimagined.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rest, <span className="italic text-gold-soft">reimagined.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Five bedding identities—from exact fitted comfort to expressive florals and refined satin texture—ready for your next wholesale selection. Tap any design to browse the complete range.</p>
@@ -278,7 +278,7 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.2fr_.8fr]">
             <Reveal>
               <Eyebrow>Collection 02 · Ladies Suiting</Eyebrow>
-              <h2 className="font-display text-[clamp(4rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Style in <span className="italic text-bronze">full bloom.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Style in <span className="italic text-bronze">full bloom.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">Six expressive ranges, each with its own fabric story—from shimmering festive lawn to vivid summer prints and classic digital florals. Tap any design to browse the complete range.</p>
@@ -300,7 +300,7 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
             <Reveal>
               <Eyebrow light>Collection 03 · Curtains</Eyebrow>
-              <h2 className="font-display text-[clamp(4rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rooms, <span className="italic text-gold-soft">transformed.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rooms, <span className="italic text-gold-soft">transformed.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Twenty velvet and embroidery-net curtain colourways—from Champagne Blush to Charcoal—created for an elegant, finished interior. Tap the collection to browse every design.</p>
@@ -320,10 +320,10 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
             <Reveal>
               <Eyebrow>Collection 04 · Clothes Collections</Eyebrow>
-              <h2 className="font-display text-[clamp(4rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints with <span className="italic text-bronze">personality.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints with <span className="italic text-bronze">personality.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">The AGF catalogue brings together twenty-two ready-to-browse fabric designs. Every image is clearly identified by its design code and colour for quick wholesale selection.</p>
+              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">The AGF catalogue brings together 101 ready-to-browse fabric designs. Every image is clearly identified by its design code and colour for quick wholesale selection.</p>
             </Reveal>
           </div>
 
@@ -339,7 +339,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1320px]">
           <Reveal className="max-w-4xl">
             <Eyebrow>The MMG standard</Eyebrow>
-            <h2 className="font-display text-[clamp(3.2rem,6vw,6.2rem)] font-semibold leading-[.9] tracking-[-0.04em] text-forest">Designed to be noticed. Selected to <span className="italic text-bronze">sell.</span></h2>
+            <h2 className="font-display text-[clamp(2.6rem,6vw,6.2rem)] font-semibold leading-[.9] tracking-[-0.04em] text-forest">Designed to be noticed. Selected to <span className="italic text-bronze">sell.</span></h2>
           </Reveal>
           <div className="mt-16 grid divide-y divide-forest/12 border-y border-forest/12 md:grid-cols-3 md:divide-x md:divide-y-0">
             {benefits.map(({ icon: Icon, title, text }, index) => (
@@ -375,7 +375,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-[1320px] flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">
           <Reveal>
             <Eyebrow light>Request the complete catalogue</Eyebrow>
-            <h2 className="max-w-4xl font-display text-[clamp(3.5rem,7vw,7.5rem)] font-semibold leading-[0.84] tracking-[-0.05em] text-white">Which collection speaks to you?</h2>
+            <h2 className="max-w-4xl font-display text-[clamp(2.8rem,7vw,7.5rem)] font-semibold leading-[0.84] tracking-[-0.05em] text-white">Which collection speaks to you?</h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us the collection, quantity and delivery city. Our team will respond with current availability and wholesale prices.</p>
           </Reveal>
           <Reveal delay={0.1} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
