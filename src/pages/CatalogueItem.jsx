@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ArrowLeft, ChevronLeft, ChevronRight, ImageOff, X } from 'lucide-react'
 import { findBySlug } from '../data/collections'
-import { catalogueMessage, whatsapp } from '../lib/whatsapp'
+import { catalogueMessage, designPriceMessage, whatsapp } from '../lib/whatsapp'
 import { Eyebrow, Reveal } from '../components/Shared'
 
 const typeLabels = {
@@ -115,7 +115,7 @@ export default function CatalogueItem() {
           >
             <span className="shine-sweep" />
             <FaWhatsapp size={17} />
-            Request this design
+            Get collection prices
           </a>
         </Reveal>
 
@@ -215,9 +215,24 @@ export default function CatalogueItem() {
               transition={{ duration: 0.3 }}
               className="max-h-[86vh] max-w-[92vw] object-contain shadow-[0_30px_100px_rgba(0,0,0,.5)]"
             />
-            <span className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/55 px-4 py-2 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
-              {designLabel(images[lightboxIndex], lightboxIndex)}
-            </span>
+            <div className="absolute inset-x-4 bottom-4 z-20 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <span className="bg-black/55 px-4 py-2 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md">
+                {designLabel(images[lightboxIndex], lightboxIndex)}
+              </span>
+              <a
+                href={whatsapp(designPriceMessage(
+                  item,
+                  item.type,
+                  images[lightboxIndex],
+                  designLabel(images[lightboxIndex], lightboxIndex),
+                ))}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#25d366] px-5 text-[9px] font-bold uppercase tracking-[0.17em] text-white shadow-[0_12px_30px_rgba(0,0,0,.3)] transition-transform hover:-translate-y-0.5"
+              >
+                <FaWhatsapp size={17} /> Get Price
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

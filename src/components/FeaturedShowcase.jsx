@@ -20,7 +20,7 @@ export default function FeaturedShowcase({ onOpen }) {
   const typeLabel = current.type === 'bedding' ? 'Bedding' : current.type === 'curtains' ? 'Curtains' : current.type === 'clothes' ? 'Clothes Collections' : 'Ladies Suiting'
 
   return (
-    <section className="relative overflow-hidden bg-[#04120f] text-white">
+    <section id="featured" className="relative overflow-hidden bg-[#04120f] text-white">
       <div className="relative min-h-[540px] sm:min-h-[620px]">
         <AnimatePresence mode="wait">
           <motion.img
