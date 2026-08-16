@@ -1,7 +1,7 @@
 import { lazy, Suspense, useCallback, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { FaWhatsapp } from 'react-icons/fa'
-import { ArrowDown, ArrowRight, Check, Gem, Layers3, Phone, Sparkles, Truck } from 'lucide-react'
+import { ArrowDown, Check, Gem, Layers3, Phone, Sparkles, Truck } from 'lucide-react'
 import { whatsapp } from '../lib/whatsapp'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { bedding, ladiesSuiting, curtains, clothesCollections, collectionsByType, heroParticles } from '../data/collections'
@@ -9,7 +9,7 @@ import { Reveal, Eyebrow, PrimaryLink } from '../components/Shared'
 import CollectionCard from '../components/CollectionCard'
 import FeaturedShowcase from '../components/FeaturedShowcase'
 import CollectionModal from '../components/CollectionModal'
-import StatCounter from '../components/StatCounter'
+import MembersShowcase from '../components/MembersShowcase'
 
 const ImmersiveLoom = lazy(() => import('../components/ImmersiveLoom'))
 
@@ -107,7 +107,7 @@ export default function Home() {
               transition={{ duration: 0.75, delay: 0.68 }}
               className="mt-9 flex flex-wrap gap-3"
             >
-              <PrimaryLink href="#collection-index">Explore collections</PrimaryLink>
+              <PrimaryLink href="#featured">Explore collections</PrimaryLink>
               <a
                 href={whatsapp('Assalam-o-Alaikum MMG International. Please share your latest wholesale prices.')}
                 target="_blank"
@@ -146,7 +146,7 @@ export default function Home() {
           </motion.div>
         )}
 
-        <a href="#collection-index" aria-label="Scroll to the collection index" className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[8px] font-bold uppercase tracking-[0.28em] text-white/40 xl:flex">
+        <a href="#members" aria-label="Scroll to the MMG International members" className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[8px] font-bold uppercase tracking-[0.28em] text-white/40 xl:flex">
           Discover
           <motion.span animate={{ y: [0, 7, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}><ArrowDown size={14} /></motion.span>
         </a>
@@ -160,96 +160,9 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="border-b border-white/10 bg-[#071d19] px-5 py-14 text-white sm:px-8 lg:px-12">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-2 gap-8 sm:grid-cols-4">
-          <Reveal><StatCounter value={4} label="Product Worlds" /></Reveal>
-          <Reveal delay={0.08}><StatCounter value={13} suffix="+" label="Signature Ranges" /></Reveal>
-          <Reveal delay={0.16}><StatCounter value={100} suffix="%" label="Wholesale Focused" /></Reveal>
-          <Reveal delay={0.24}>
-            <div>
-              <p className="font-display text-5xl font-semibold text-white sm:text-6xl">Faisalabad</p>
-              <p className="mt-3 text-[9px] font-bold uppercase tracking-[0.22em] text-white/45">Nationwide Supply</p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <MembersShowcase />
 
       <FeaturedShowcase onOpen={openCollection} />
-
-      <section id="collection-index" className="px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
-        <div className="mx-auto max-w-[1320px]">
-          <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
-            <Reveal>
-              <Eyebrow>The collection house</Eyebrow>
-              <p className="max-w-sm text-sm leading-7 text-ink/55">Four distinct product worlds, presented with one uncompromising MMG standard.</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="font-display text-[clamp(2.5rem,6vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-forest">
-                Your next bestseller <span className="italic text-bronze">starts here.</span>
-              </h2>
-            </Reveal>
-          </div>
-
-          <div className="mt-16 grid gap-5 lg:mt-24 lg:grid-cols-2">
-            <Reveal>
-              <a href="#bedding" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                <img src="/collections/royal-fit.jpg" alt="Royal Fit bedding" className="absolute inset-0 size-full object-cover object-[center_42%] transition-transform duration-[1400ms] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/25 to-black/10" />
-                <div className="relative mt-auto w-full">
-                  <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    <span>Collection 01</span><span>05 ranges</span>
-                  </div>
-                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Bedding</h3>
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Beautifully coordinated fitted, printed and textured bedding collections for a premium bedroom story.</p>
-                  <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View bedding <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
-                </div>
-              </a>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <a href="#ladies-suiting" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                <img src="/collections/chamki-lawn.jpeg" alt="Chamki Lawn ladies suiting" className="absolute inset-0 size-full object-cover object-top transition-transform duration-[1400ms] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/20 to-black/5" />
-                <div className="relative mt-auto w-full">
-                  <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    <span>Collection 02</span><span>06 ranges</span>
-                  </div>
-                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Ladies Suiting</h3>
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Expressive lawn, digital florals and summer colour stories curated for modern seasonal dressing.</p>
-                  <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View ladies suiting <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
-                </div>
-              </a>
-            </Reveal>
-            <Reveal className="lg:col-span-2" delay={0.14}>
-              <a href="#curtains" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                <img src="/collections/curtains.jpeg" alt="Champagne Blush velvet embroidery curtain" className="absolute inset-0 size-full object-cover object-[center_35%] transition-transform duration-[1400ms] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/28 to-black/5" />
-                <div className="relative mt-auto w-full">
-                  <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    <span>Collection 03</span><span>20 colourways</span>
-                  </div>
-                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Curtains</h3>
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Rich velvet, fine embroidery and graceful net panels in a complete palette of elegant interior colours.</p>
-                  <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View curtains <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
-                </div>
-              </a>
-            </Reveal>
-            <Reveal className="lg:col-span-2" delay={0.18}>
-              <a href="#clothes-collections" className="collection-gateway group relative flex min-h-[540px] overflow-hidden bg-forest p-8 text-white sm:p-11">
-                <img src="/collections/agf.jpg" alt="AGF blue floral printed fabric" className="absolute inset-0 size-full object-cover object-center transition-transform duration-[1400ms] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/32 to-black/10" />
-                <div className="relative mt-auto w-full">
-                  <div className="mb-5 flex items-center justify-between text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">
-                    <span>Collection 04</span><span>101 designs</span>
-                  </div>
-                  <h3 className="font-display text-5xl font-semibold leading-none sm:text-7xl">Clothes Collections</h3>
-                  <p className="mt-5 max-w-lg text-sm leading-7 text-white/65">Explore the AGF printed-fabric catalogue with floral, geometric and statement designs labelled by code and colour.</p>
-                  <span className="mt-7 inline-flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.2em] text-gold-soft">View AGF <ArrowRight size={15} className="transition-transform group-hover:translate-x-1.5" /></span>
-                </div>
-              </a>
-            </Reveal>
-          </div>
-        </div>
-      </section>
 
       <section id="bedding" className="relative overflow-hidden bg-[#061b17] px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
         <div className="texture-grid pointer-events-none absolute inset-0 opacity-25" />

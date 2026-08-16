@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ArrowRight, ChevronLeft, ChevronRight, X } from 'lucide-react'
-import { catalogueMessage, whatsapp } from '../lib/whatsapp'
+import { designPriceMessage, whatsapp } from '../lib/whatsapp'
 
 export default function CollectionModal({ type, items, activeIndex, onClose, onSelectIndex }) {
   const item = items[activeIndex]
@@ -117,13 +117,13 @@ export default function CollectionModal({ type, items, activeIndex, onClose, onS
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <a
-              href={whatsapp(catalogueMessage(item, type))}
+              href={whatsapp(designPriceMessage(item, type, item.image, item.title))}
               target="_blank"
               rel="noreferrer"
               className="group inline-flex min-h-13 flex-1 items-center justify-center gap-3 bg-gold px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-forest transition-colors hover:bg-gold-soft"
             >
               <FaWhatsapp size={17} />
-              Request this design
+              Get Price
             </a>
             <Link
               to={`/catalogue/${item.slug}`}
