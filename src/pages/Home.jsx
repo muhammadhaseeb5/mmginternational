@@ -122,7 +122,7 @@ export default function Home() {
               transition={{ delay: 0.9 }}
               className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/45"
             >
-              {['4 product worlds', '13 signature ranges', 'Nationwide supply'].map((point) => (
+              {['4 product worlds', '19 signature ranges', 'Nationwide supply'].map((point) => (
                 <span key={point} className="flex items-center gap-2"><Check size={13} className="text-gold" />{point}</span>
               ))}
             </motion.div>
@@ -154,7 +154,7 @@ export default function Home() {
 
       <div className="marquee overflow-hidden border-b border-forest/10 bg-gold py-3 text-[9px] font-bold uppercase tracking-[0.28em] text-forest">
         <div className="marquee-track flex min-w-max items-center gap-9">
-          {[...Array(2)].flatMap((_, group) => ['Royal Fit', 'Elga Premium', 'Curtains', 'AGF', 'Chamki Lawn', 'Classic Digital Lawn'].map((item) => (
+          {[...Array(2)].flatMap((_, group) => ['Royal Fit', 'Elga Premium', 'Curtains', 'AGF', 'Stripe Fabrics', 'Chamki Lawn'].map((item) => (
             <span key={`${group}-${item}`} className="flex items-center gap-9"><Sparkles size={12} />{item}</span>
           )))}
         </div>
@@ -233,14 +233,14 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
             <Reveal>
               <Eyebrow>Collection 04 · Clothes Collections</Eyebrow>
-              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints with <span className="italic text-bronze">personality.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints and stripes with <span className="italic text-bronze">personality.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">The AGF catalogue brings together 101 ready-to-browse fabric designs. Every image is clearly identified by its design code and colour for quick wholesale selection.</p>
+              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">Explore 101 AGF designs alongside six Stripe specifications spanning 75–150 GSM, 94–110 Inch widths and refined 1–2 cm repeats.</p>
             </Reveal>
           </div>
 
-          <div className="mt-16 max-w-xl lg:mt-24">
+          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:mt-24 xl:grid-cols-3">
             {clothesCollections.map((item, index) => (
               <CollectionCard key={item.title} item={item} index={index} type="clothes" onOpen={() => openCollection('clothes', index)} />
             ))}
@@ -268,7 +268,7 @@ export default function Home() {
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-bronze">Wholesale ordering</p>
               <h3 className="mt-3 font-display text-3xl font-semibold text-forest sm:text-4xl">Choose a range. Share your quantity. Receive current pricing.</h3>
             </div>
-            <PrimaryLink href={whatsapp('Please guide me through placing a wholesale order for MMG bedding, ladies suiting, curtains or AGF clothes collections.')}>Start an order</PrimaryLink>
+            <PrimaryLink href={whatsapp('Please guide me through placing a wholesale order for MMG bedding, ladies suiting, curtains, AGF or Stripe clothes collections.')}>Start an order</PrimaryLink>
           </Reveal>
         </div>
       </section>
@@ -292,7 +292,7 @@ export default function Home() {
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/65">Tell us the collection, quantity and delivery city. Our team will respond with current availability and wholesale prices.</p>
           </Reveal>
           <Reveal delay={0.1} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
-            <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding, Ladies Suiting, Curtains and AGF catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
+            <PrimaryLink inverse href={whatsapp("Assalam-o-Alaikum. Please send me the complete MMG Bedding, Ladies Suiting, Curtains, AGF and Stripe catalogues with wholesale prices.")}>Chat on WhatsApp</PrimaryLink>
             <a href="tel:+923219658666" className="inline-flex min-h-13 items-center justify-center gap-3 border border-white/30 px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-white transition-colors hover:border-gold hover:bg-gold hover:text-forest"><Phone size={15} />+92 321 9658666</a>
           </Reveal>
         </div>

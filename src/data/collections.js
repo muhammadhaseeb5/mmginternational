@@ -1,13 +1,3 @@
-export const navItems = [
-  ['Bedding', '/#bedding'],
-  ['Ladies Suiting', '/#ladies-suiting'],
-  ['Curtains', '/#curtains'],
-  ['Clothes Collections', '/#clothes-collections'],
-  ['Full Catalogue', '/catalogue'],
-  ['Our Standard', '/#our-standard'],
-  ['Contact', '/#contact'],
-]
-
 export const bedding = [
   {
     slug: 'royal-fit',
@@ -119,6 +109,69 @@ export const curtains = [
   },
 ]
 
+export const stripeCollections = [
+  {
+    slug: 'stripe-75gsm-94inch-1cm',
+    title: '75 GSM · 94 Inch · 1 cm Stripe',
+    navLabel: '75 GSM · 94 Inch · 1 cm Stripe',
+    overline: 'Stripe · 16 colourways',
+    description: 'A lightweight 75 GSM stripe fabric in a generous 94-inch width, finished with a refined 1 cm stripe across sixteen colourways.',
+    image: '/catalogue/stripe-75gsm-94inch-1cm/GFT_Gold.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+  {
+    slug: 'stripe-85gsm-94inch-1cm',
+    title: '85 GSM · 94 Inch · 1 cm Stripe',
+    navLabel: '85 GSM · 94 Inch · 1 cm Stripe',
+    overline: 'Stripe · 23 colourways',
+    description: 'A versatile 85 GSM stripe construction in 94-inch width, presented in twenty-three colours plus a finished-product mockup.',
+    image: '/catalogue/stripe-85gsm-94inch-1cm/85gsm mockup.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+  {
+    slug: 'stripe-95gsm-94inch-1cm',
+    title: '95 GSM · 94 Inch · 1 cm Stripe',
+    navLabel: '95 GSM · 94 Inch · 1 cm Stripe',
+    overline: 'Stripe · 10 colourways',
+    description: 'A balanced 95 GSM stripe fabric with a 94-inch width and subtle 1 cm repeat, available in ten versatile tones.',
+    image: '/catalogue/stripe-95gsm-94inch-1cm/GFT_Slate_Blue.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+  {
+    slug: 'stripe-95gsm-110inch-2cm',
+    title: '95 GSM · 110 Inch · 2 cm Stripe',
+    navLabel: '95 GSM · 110 Inch · 2 cm Stripe',
+    overline: 'Extra-wide stripe · 23 colourways',
+    description: 'An extra-wide 110-inch fabric at 95 GSM with a more pronounced 2 cm stripe, offered in twenty-three considered shades.',
+    image: '/catalogue/stripe-95gsm-110inch-2cm/GFT_Rose_Gold.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+  {
+    slug: 'stripe-130gsm-94inch-1cm',
+    title: '130 GSM · 94 Inch · 1 cm Stripe',
+    navLabel: '130 GSM · 94 Inch · 1 cm Stripe',
+    overline: 'Substantial stripe · 10 colourways',
+    description: 'A more substantial 130 GSM fabric in 94-inch width with a clean 1 cm stripe, curated across ten classic colours.',
+    image: '/catalogue/stripe-130gsm-94inch-1cm/GFT_Mustard.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+  {
+    slug: 'stripe-150gsm-94inch-1cm',
+    title: '150 GSM · 94 Inch · 1 cm Stripe',
+    navLabel: '150 GSM · 94 Inch · 1 cm Stripe',
+    overline: 'Heavyweight stripe · 13 colourways',
+    description: 'A heavyweight 150 GSM stripe fabric in 94-inch width, combining a crisp 1 cm repeat with thirteen rich colour options.',
+    image: '/catalogue/stripe-150gsm-94inch-1cm/GFT_Royal_Blue.png',
+    position: 'center top',
+    family: 'stripe',
+  },
+]
+
 export const clothesCollections = [
   {
     slug: 'agf',
@@ -129,6 +182,29 @@ export const clothesCollections = [
     position: 'center top',
     layout: 'lg:col-span-12',
   },
+  ...stripeCollections,
+]
+
+export const navItems = [
+  { label: 'Bedding', href: '/#bedding' },
+  { label: 'Ladies Suiting', href: '/#ladies-suiting' },
+  { label: 'Curtains', href: '/#curtains' },
+  {
+    label: 'Clothes Collections',
+    href: '/#clothes-collections',
+    children: [
+      {
+        label: 'Stripe',
+        children: stripeCollections.map(({ navLabel, slug }) => ({
+          label: navLabel,
+          href: `/catalogue/${slug}`,
+        })),
+      },
+    ],
+  },
+  { label: 'Full Catalogue', href: '/catalogue' },
+  { label: 'Our Standard', href: '/#our-standard' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export const collectionsByType = { bedding, ladies: ladiesSuiting, curtains, clothes: clothesCollections }

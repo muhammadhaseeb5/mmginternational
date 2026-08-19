@@ -16,6 +16,22 @@ const typeLabels = {
 
 const designLabel = (src, index) => {
   const fileName = decodeURIComponent(src.split('/').pop() || '').replace(/\.[^.]+$/, '')
+  const stripeColourMatch = fileName.match(/^GFT_(.+)$/i)
+
+  if (stripeColourMatch) {
+    const colour = stripeColourMatch[1]
+      .replaceAll('_', ' ')
+      .replaceAll('-', ' ')
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/\s+/g, ' ')
+      .trim()
+    return `Colour · ${colour}`
+  }
+
+  if (/^85gsm mockup$/i.test(fileName)) {
+    return '85 GSM Mockup'
+  }
+
   const curtainMatch = fileName.match(/^\d+_(\d+-\d+)_(.+)$/)
 
   if (curtainMatch) {
