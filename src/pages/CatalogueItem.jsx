@@ -28,8 +28,8 @@ const designLabel = (src, index) => {
     return `Colour · ${colour}`
   }
 
-  if (/^85gsm mockup$/i.test(fileName)) {
-    return '85 GSM Mockup'
+  if (/mockup$/i.test(fileName)) {
+    return 'Collection Mockup'
   }
 
   const curtainMatch = fileName.match(/^\d+_(\d+-\d+)_(.+)$/)

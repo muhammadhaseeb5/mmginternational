@@ -37,7 +37,9 @@ export default function CatalogueHub() {
                   loading="lazy"
                   decoding="async"
                   style={{ objectPosition: item.position }}
-                  className="absolute inset-0 size-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
+                  className={`absolute inset-0 size-full bg-[#ececea] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05] ${
+                    item.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                  }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/92 via-[#031713]/15 to-black/5" />
                 <span className="shine-sweep" />

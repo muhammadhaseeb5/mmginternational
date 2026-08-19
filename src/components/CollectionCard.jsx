@@ -42,7 +42,9 @@ export default function CollectionCard({ item, index, type = 'bedding', onOpen }
           loading="lazy"
           decoding="async"
           style={{ objectPosition: item.position }}
-          className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
+          className={`absolute inset-0 size-full bg-[#ececea] transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045] ${
+            item.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+          }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/95 via-[#031713]/10 to-black/5 transition-colors duration-500 group-hover:via-[#031713]/20" />
         <span className="shine-sweep" />

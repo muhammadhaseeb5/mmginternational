@@ -68,7 +68,7 @@ export default function CollectionModal({ type, items, activeIndex, onClose, onS
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.5, ease: [0.2, 0.75, 0.25, 1] }}
               style={{ objectPosition: item.position }}
-              className="absolute inset-0 size-full object-cover"
+              className={`absolute inset-0 size-full bg-[#ececea] ${item.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
             />
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-t from-[#031713]/90 via-transparent to-[#031713]/10 lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#071d19]/50" />
@@ -154,7 +154,9 @@ export default function CollectionModal({ type, items, activeIndex, onClose, onS
                         alt={relatedItem.title}
                         loading="lazy"
                         style={{ objectPosition: relatedItem.position }}
-                        className="size-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className={`size-full bg-[#ececea] transition-transform duration-500 group-hover:scale-110 ${
+                          relatedItem.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                        }`}
                       />
                     </div>
                     <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-2 pb-2 pt-4 text-left text-[8px] font-bold uppercase leading-tight tracking-[0.08em] text-white">
