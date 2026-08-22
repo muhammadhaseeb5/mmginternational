@@ -8,9 +8,9 @@ const officers = [
     role: 'General Manager',
     badge: 'GM',
     image: '/team/general-manager.webp',
-    width: 1200,
-    height: 900,
-    position: '50% 40%',
+    width: 1122,
+    height: 1402,
+    position: '50% 35%',
     number: '01',
     note: 'Leadership & direction',
   },
@@ -27,16 +27,16 @@ const officers = [
   },
 ]
 
-const salesRepresentative = {
+const areaManager = {
   name: 'Sohail Malik',
-  role: 'Sales Representative',
-  badge: 'Sales',
+  role: 'Area Manager',
+  badge: 'Area',
   image: '/team/sales-representative.webp',
   width: 1086,
   height: 1448,
   position: '50% 28%',
   number: '03',
-  note: 'Wholesale relationships',
+  note: 'Regional growth & relationships',
 }
 
 const titleLines = [
@@ -150,9 +150,9 @@ function OfficerCard({ member, index }) {
   )
 }
 
-function SalesCard() {
+function AreaManagerCard() {
   const reduceMotion = useReducedMotion()
-  const member = salesRepresentative
+  const member = areaManager
 
   return (
     <motion.article
@@ -225,7 +225,7 @@ export default function MembersShowcase() {
           >
             <Eyebrow light>Meet the people</Eyebrow>
             <p className="max-w-sm text-sm leading-7 text-white/50">
-              The officers and representative moving MMG International forward, together.
+              The leadership team moving MMG International forward, together.
             </p>
           </motion.div>
           <AnimatedTitle />
@@ -251,9 +251,9 @@ export default function MembersShowcase() {
           </div>
         </section>
 
-        <section aria-labelledby="sales-representative-heading" className="pt-24 sm:pt-32 lg:pt-40">
-          <GroupHeading number="02" title="Sales Representative" count="01 member" />
-          <SalesCard />
+        <section aria-labelledby="area-manager-heading" className="pt-24 sm:pt-32 lg:pt-40">
+          <GroupHeading number="02" title="Area Manager" count="01 member" />
+          <AreaManagerCard />
         </section>
       </div>
     </section>
