@@ -122,7 +122,7 @@ export default function Home() {
               transition={{ delay: 0.9 }}
               className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/45"
             >
-              {['4 product worlds', '19 signature ranges', 'Nationwide supply'].map((point) => (
+              {['4 product worlds', '20 signature ranges', 'Nationwide supply'].map((point) => (
                 <span key={point} className="flex items-center gap-2"><Check size={13} className="text-gold" />{point}</span>
               ))}
             </motion.div>
@@ -174,7 +174,7 @@ export default function Home() {
               <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em]">Rest, <span className="italic text-gold-soft">reimagined.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Five bedding identities—from exact fitted comfort to expressive florals and refined satin texture—ready for your next wholesale selection. Tap any design to browse the complete range.</p>
+              <p className="max-w-lg text-sm leading-7 text-white/55 lg:ml-auto">Six bedding identities—from exact fitted comfort to expressive florals, refined satin texture and quilted elegance—ready for your next wholesale selection. Tap any design to browse the complete range.</p>
             </Reveal>
           </div>
 

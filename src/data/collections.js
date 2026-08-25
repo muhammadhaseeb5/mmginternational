@@ -44,6 +44,15 @@ export const bedding = [
     position: 'center',
     layout: 'lg:col-span-4',
   },
+  {
+    slug: 'polo',
+    title: 'Polo',
+    overline: 'Quilted elegance',
+    description: 'A three-piece mitered-corner bedspread set with coordinated pillow cases and a refined quilted herringbone finish.',
+    image: '/collections/polo.png',
+    position: 'center 42%',
+    layout: 'lg:col-span-12',
+  },
 ]
 
 export const ladiesSuiting = [
