@@ -2,22 +2,16 @@ import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 
-export function Brand({ light = false }) {
+export function Brand() {
   return (
-    <Link to="/" className="group inline-flex shrink-0 items-center gap-3" aria-label="MMG International home">
+    <Link to="/" className="group inline-flex shrink-0 items-center" aria-label="MMG International home">
       <img
-        src="/mmg-international-logo.png"
+        src="/mmg-international-logo-transparent.png"
         alt=""
-        width="56"
-        height="56"
-        className="size-12 object-contain transition-transform duration-500 group-hover:rotate-3 group-hover:scale-105 sm:size-14"
+        width="720"
+        height="658"
+        className="h-14 w-auto object-contain drop-shadow-[0_5px_14px_rgba(0,0,0,.24)] transition-transform duration-500 group-hover:scale-105 sm:h-16"
       />
-      <span className="flex flex-col leading-none">
-        <strong className={`font-display text-2xl font-semibold tracking-wide ${light ? 'text-white' : 'text-forest'}`}>MMG</strong>
-        <span className={`mt-1.5 text-[9px] font-bold tracking-[0.28em] ${light ? 'text-gold-soft' : 'text-bronze'}`}>
-          INTERNATIONAL
-        </span>
-      </span>
     </Link>
   )
 }

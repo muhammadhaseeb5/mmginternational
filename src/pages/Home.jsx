@@ -48,7 +48,7 @@ export default function Home() {
     <main>
       <section id="home" className="hero-showroom relative isolate -mt-[82px] min-h-[calc(100svh-36px)] overflow-hidden bg-forest pt-[82px] text-white">
         <img
-          src="/mmg-showroom-hero.png"
+          src="/mmg-showroom-hero-brand-refresh.png"
           alt="MMG International showroom filled with premium textile collections"
           width="1918"
           height="820"
@@ -275,7 +275,7 @@ export default function Home() {
 
       <section id="contact" className="relative isolate overflow-hidden bg-forest px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12">
         <img
-          src="/mmg-showroom-hero.png"
+          src="/mmg-showroom-hero-brand-refresh.png"
           alt=""
           aria-hidden="true"
           loading="lazy"
