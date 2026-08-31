@@ -1,6 +1,7 @@
 import { useMotionValue, motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import { Reveal } from './Shared'
+import CoverImage from './CoverImage'
 
 export default function CollectionCard({ item, index, type = 'bedding', onOpen }) {
   const isBedding = type === 'bedding'
@@ -36,10 +37,10 @@ export default function CollectionCard({ item, index, type = 'bedding', onOpen }
         }`}
         aria-label={`View all ${item.title} designs`}
       >
-        <img
+        <CoverImage
           src={item.image}
+          eager={index === 0}
           alt={`${item.title} collection`}
-          loading="lazy"
           decoding="async"
           style={{ objectPosition: item.position }}
           className={`absolute inset-0 size-full bg-[#ececea] transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045] ${

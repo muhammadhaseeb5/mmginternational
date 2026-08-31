@@ -31,7 +31,8 @@ export default function FeaturedShowcase({ onOpen }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             style={{ objectPosition: item.position }}
             className="absolute inset-0 size-full object-cover"
           />

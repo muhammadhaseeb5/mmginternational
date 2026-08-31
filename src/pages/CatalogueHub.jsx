@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { allCollectionItems } from '../data/collections'
 import { Reveal, Eyebrow } from '../components/Shared'
+import CoverImage from '../components/CoverImage'
 
 const typeLabels = {
   bedding: 'Bedding',
@@ -31,10 +32,10 @@ export default function CatalogueHub() {
                 to={`/catalogue/${item.slug}`}
                 className="collection-card group relative block min-h-[360px] overflow-hidden bg-[#0a201b] shadow-[0_20px_50px_rgba(7,29,25,.15)]"
               >
-                <img
+                <CoverImage
                   src={item.image}
+                  eager={index < 3}
                   alt={`${item.title} collection`}
-                  loading="lazy"
                   decoding="async"
                   style={{ objectPosition: item.position }}
                   className={`absolute inset-0 size-full bg-[#ececea] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05] ${
