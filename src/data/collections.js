@@ -118,6 +118,20 @@ export const curtains = [
   },
 ]
 
+export const plainDyedCollections = [
+  {
+    slug: 'plain-dyed-130gsm-94inch',
+    title: '130 GSM · 94 Inch · Plain Dyed Fabric',
+    navLabel: '130 GSM · 94 Inch · Plain Dyed',
+    overline: 'Plain dyed · 14 colourways',
+    description: 'A substantial 130 GSM plain-dyed fabric in a generous 94-inch width, presented across fourteen versatile colourways.',
+    image: '/catalogue/plain-dyed-130gsm-94inch/mockup.png',
+    imageFit: 'contain',
+    position: 'center top',
+    family: 'plain-dyed',
+  },
+]
+
 export const stripeCollections = [
   {
     slug: 'stripe-75gsm-94inch-1cm',
@@ -153,12 +167,14 @@ export const stripeCollections = [
     family: 'stripe',
   },
   {
-    slug: 'stripe-95gsm-110inch-2cm',
-    title: '95 GSM · 110 Inch · 2 cm Stripe',
-    navLabel: '95 GSM · 110 Inch · 2 cm Stripe',
+    slug: 'stripe-95gsm-112inch-1cm',
+    legacySlugs: ['stripe-95gsm-110inch-2cm'],
+    cataloguePath: 'stripe-95gsm-110inch-2cm',
+    title: '95 GSM · 112 Inch · 1 cm Stripe',
+    navLabel: '95 GSM · 112 Inch · 1 cm Stripe',
     overline: 'Extra-wide stripe · 23 colourways',
-    description: 'An extra-wide 110-inch fabric at 95 GSM with a more pronounced 2 cm stripe, offered in twenty-three considered shades.',
-    image: '/catalogue/stripe-95gsm-110inch-2cm/mockup.jpeg',
+    description: 'An extra-wide 112-inch fabric at 95 GSM with a refined 1 cm stripe, offered in twenty-three considered shades.',
+    image: '/catalogue/stripe-95gsm-110inch-2cm/mockup-95gsm-112inch-1cm.png',
     imageFit: 'contain',
     position: 'center top',
     family: 'stripe',
@@ -169,7 +185,7 @@ export const stripeCollections = [
     navLabel: '130 GSM · 94 Inch · 1 cm Stripe',
     overline: 'Substantial stripe · 10 colourways',
     description: 'A more substantial 130 GSM fabric in 94-inch width with a clean 1 cm stripe, curated across ten classic colours.',
-    image: '/catalogue/stripe-130gsm-94inch-1cm/mockup.jpeg',
+    image: '/catalogue/stripe-130gsm-94inch-1cm/mockup.png',
     imageFit: 'contain',
     position: 'center top',
     family: 'stripe',
@@ -197,6 +213,7 @@ export const clothesCollections = [
     position: 'center top',
     layout: 'lg:col-span-12',
   },
+  ...plainDyedCollections,
   ...stripeCollections,
 ]
 
@@ -209,6 +226,13 @@ export const navItems = [
     href: '/#clothes-collections',
     children: [
       { label: 'AGF', href: '/catalogue/agf' },
+      {
+        label: 'Plain Dyed Fabric',
+        children: plainDyedCollections.map(({ navLabel, slug }) => ({
+          label: navLabel,
+          href: `/catalogue/${slug}`,
+        })),
+      },
       {
         label: 'Stripe',
         children: stripeCollections.map(({ navLabel, slug }) => ({
@@ -232,7 +256,9 @@ export const allCollectionItems = [
   ...clothesCollections.map((item) => ({ ...item, type: 'clothes' })),
 ]
 
-export const findBySlug = (slug) => allCollectionItems.find((item) => item.slug === slug) ?? null
+export const findBySlug = (slug) => allCollectionItems.find(
+  (item) => item.slug === slug || item.legacySlugs?.includes(slug),
+) ?? null
 
 export const featuredList = [
   ['bedding', 'Royal Fit'],

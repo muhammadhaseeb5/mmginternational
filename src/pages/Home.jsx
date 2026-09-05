@@ -233,10 +233,10 @@ export default function Home() {
           <div className="grid items-end gap-8 lg:grid-cols-[1.25fr_.75fr]">
             <Reveal>
               <Eyebrow>Collection 04 · Clothes Collections</Eyebrow>
-              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints and stripes with <span className="italic text-bronze">personality.</span></h2>
+              <h2 className="font-display text-[clamp(2.6rem,8vw,8rem)] font-semibold leading-[.8] tracking-[-0.05em] text-forest">Prints, plains and stripes with <span className="italic text-bronze">personality.</span></h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">Explore 101 AGF designs alongside six Stripe specifications spanning 75–150 GSM, 94–110 Inch widths and refined 1–2 cm repeats.</p>
+              <p className="max-w-lg text-sm leading-7 text-forest/55 lg:ml-auto">Explore 101 AGF designs, a 130 GSM plain-dyed range and six Stripe specifications spanning 75–150 GSM, 94–112 Inch widths and refined 1 cm repeats.</p>
             </Reveal>
           </div>
 

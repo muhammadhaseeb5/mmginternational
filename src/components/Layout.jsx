@@ -22,10 +22,10 @@ export default function Layout() {
   const [whatsappOpen, setWhatsappOpen] = useState(false)
   const desktopNavRef = useRef(null)
   const desktopParentDisclosureRef = useRef(null)
-  const desktopChildDisclosureRef = useRef(null)
+  const desktopChildDisclosureRefs = useRef(new Map())
   const mobileMenuButtonRef = useRef(null)
   const mobileParentDisclosureRef = useRef(null)
-  const mobileChildDisclosureRef = useRef(null)
+  const mobileChildDisclosureRefs = useRef(new Map())
   const menuOpenRef = useRef(menuOpen)
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 28, restDelta: 0.001 })
@@ -73,7 +73,7 @@ export default function Layout() {
       event.preventDefault()
 
       if (desktopOpenChild) {
-        desktopChildDisclosureRef.current?.focus()
+        desktopChildDisclosureRefs.current.get(desktopOpenChild)?.focus()
         setDesktopOpenChild(null)
         return
       }
@@ -98,7 +98,7 @@ export default function Layout() {
       event.preventDefault()
 
       if (mobileOpenChild) {
-        mobileChildDisclosureRef.current?.focus()
+        mobileChildDisclosureRefs.current.get(mobileOpenChild)?.focus()
         setMobileOpenChild(null)
         return
       }
@@ -267,7 +267,10 @@ export default function Layout() {
                                         {child.label}
                                       </a>
                                       <button
-                                        ref={desktopChildDisclosureRef}
+                                        ref={(node) => {
+                                          if (node) desktopChildDisclosureRefs.current.set(childKey, node)
+                                          else desktopChildDisclosureRefs.current.delete(childKey)
+                                        }}
                                         type="button"
                                         aria-expanded={childOpen}
                                         aria-controls={childSubmenuId}
@@ -280,7 +283,10 @@ export default function Layout() {
                                     </div>
                                   ) : (
                                     <button
-                                      ref={desktopChildDisclosureRef}
+                                      ref={(node) => {
+                                        if (node) desktopChildDisclosureRefs.current.set(childKey, node)
+                                        else desktopChildDisclosureRefs.current.delete(childKey)
+                                      }}
                                       type="button"
                                       aria-expanded={childOpen}
                                       aria-controls={childSubmenuId}
@@ -446,7 +452,10 @@ export default function Layout() {
                                     </a>
                                   ) : (
                                     <button
-                                      ref={mobileChildDisclosureRef}
+                                      ref={(node) => {
+                                        if (node) mobileChildDisclosureRefs.current.set(childKey, node)
+                                        else mobileChildDisclosureRefs.current.delete(childKey)
+                                      }}
                                       type="button"
                                       aria-expanded={childOpen}
                                       aria-controls={childSubmenuId}
@@ -463,7 +472,10 @@ export default function Layout() {
                                   )}
                                   {child.href && (
                                     <button
-                                      ref={mobileChildDisclosureRef}
+                                      ref={(node) => {
+                                        if (node) mobileChildDisclosureRefs.current.set(childKey, node)
+                                        else mobileChildDisclosureRefs.current.delete(childKey)
+                                      }}
                                       type="button"
                                       aria-expanded={childOpen}
                                       aria-controls={childSubmenuId}

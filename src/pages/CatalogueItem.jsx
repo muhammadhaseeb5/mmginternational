@@ -66,7 +66,7 @@ export default function CatalogueItem() {
     if (!item) return undefined
     let cancelled = false
     setImages(null)
-    fetch(`/catalogue/${slug}/manifest.json`)
+    fetch(`/catalogue/${item.cataloguePath ?? item.slug}/manifest.json`)
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error('no manifest'))))
       .then((list) => {
         if (!cancelled) setImages(Array.isArray(list) && list.length > 0 ? list : [item.image])
