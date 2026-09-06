@@ -1,5 +1,15 @@
 export const bedding = [
   {
+    slug: 'heaven-blanket',
+    title: 'Heaven Blanket',
+    overline: 'Home of comfort',
+    description: 'A one-piece blanket measuring 230 x 240 cm, with a weight of 1.8 kg, from MMG International.',
+    image: '/collections/heaven-blanket.png',
+    imageFit: 'contain',
+    position: 'center',
+    layout: 'lg:col-span-12',
+  },
+  {
     slug: 'royal-fit',
     title: 'Royal Fit',
     overline: 'Fitted comfort',
