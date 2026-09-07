@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { ArrowRight, ChevronLeft, ChevronRight, X } from 'lucide-react'
-import { designPriceMessage, whatsapp } from '../lib/whatsapp'
+import { catalogueMessage, whatsapp } from '../lib/whatsapp'
 
 export default function CollectionModal({ type, items, activeIndex, onClose, onSelectIndex }) {
   const item = items[activeIndex]
@@ -112,12 +112,31 @@ export default function CollectionModal({ type, items, activeIndex, onClose, onS
               <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-gold-soft">{item.overline}</p>
               <h3 className="mt-3 font-display text-4xl font-semibold leading-[.94] text-white sm:text-5xl">{item.title}</h3>
               <p className="mt-5 text-sm leading-7 text-white/60">{item.description}</p>
+              {item.productDetails && (
+                <section
+                  aria-label={`${item.productDetails.heading} product details`}
+                  className="mt-5 border-l-2 border-gold/70 bg-white/[.04] px-4 py-3"
+                >
+                  <h4 className="text-sm font-bold text-white">
+                    <span aria-hidden="true">{item.productDetails.icon}</span>{' '}
+                    {item.productDetails.heading}
+                  </h4>
+                  <ul className="mt-3 space-y-1.5">
+                    {item.productDetails.items.map((detail) => (
+                      <li key={detail} className="flex items-start gap-2 text-sm leading-6 text-white/65">
+                        <span aria-hidden="true" className="mt-px font-bold text-gold-soft">✔</span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
             </motion.div>
           </AnimatePresence>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <a
-              href={whatsapp(designPriceMessage(item, type, item.image, item.title))}
+              href={whatsapp(catalogueMessage(item, type))}
               target="_blank"
               rel="noreferrer"
               className="group inline-flex min-h-13 flex-1 items-center justify-center gap-3 bg-gold px-6 text-[10px] font-bold uppercase tracking-[0.17em] text-forest transition-colors hover:bg-gold-soft"

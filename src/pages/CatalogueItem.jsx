@@ -122,6 +122,25 @@ export default function CatalogueItem() {
               {item.title}
             </h1>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-forest/55">{item.description}</p>
+            {item.productDetails && (
+              <section
+                aria-label={`${item.productDetails.heading} product details`}
+                className="mt-6 max-w-2xl border-l-2 border-gold bg-forest/[.035] px-5 py-4"
+              >
+                <h2 className="text-sm font-bold text-forest">
+                  <span aria-hidden="true">{item.productDetails.icon}</span>{' '}
+                  {item.productDetails.heading}
+                </h2>
+                <ul className="mt-3 space-y-2">
+                  {item.productDetails.items.map((detail) => (
+                    <li key={detail} className="flex items-start gap-2 text-sm leading-6 text-forest/70">
+                      <span aria-hidden="true" className="mt-px font-bold text-bronze">✔</span>
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
           <a
             href={whatsapp(catalogueMessage(item, item.type))}

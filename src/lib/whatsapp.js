@@ -28,6 +28,18 @@ export const designPriceMessage = (item, type, image, design) => [
 ].join('\n')
 
 export const catalogueMessage = (item, type) => {
+  if (item.productDetails) {
+    const { heading, icon, items } = item.productDetails
+    return [
+      'Assalam-o-Alaikum. I am interested in this collection:',
+      '',
+      `${icon} *${heading}* ${icon}`,
+      ...items.map((detail) => `✔ ${detail}`),
+      '',
+      'Please share the wholesale price and current availability.',
+    ].join('\n')
+  }
+
   const category = type === 'bedding' ? ' Bedding' : type === 'ladies' ? ' Ladies Suiting' : type === 'clothes' ? ' Clothes' : ''
   return `Assalam-o-Alaikum. I am interested in the ${item.title}${category} collection. Please share the catalogue, wholesale pricing and availability.`
 }
